@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000";
+const EQUATIONS_PATH = "/backend/data/equations.json";
 
 const categorySelect = document.getElementById("categorySelect");
 const equationSelect = document.getElementById("equationSelect");
@@ -54,15 +54,14 @@ function renderSolveFor(equationName) {
 
 async function loadEquations() {
   try {
-    const response = await fetch(`${API_BASE}/equations`);
+    const response = await fetch(EQUATIONS_PATH);
     if (!response.ok) {
-      throw new Error(`Server returned ${response.status}`);
+      throw new Error(`Equation load failed (${response.status})`);
     }
 
-    const payload = await response.json();
-    equationsCache = payload.equations;
-
+    equationsCache = await response.json();
     const categories = uniqueCategories(equationsCache);
+
     renderCategories(categories);
 
     if (categories.length > 0) {
@@ -85,7 +84,7 @@ async function solveCurrentEquation() {
       variables,
     };
 
-    const response = await fetch(`${API_BASE}/solve`, {
+    const response = await fetch("/api/solve", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -93,13 +92,13 @@ async function solveCurrentEquation() {
 
     const result = await response.json();
     if (!response.ok) {
-      throw new Error(result.detail || "Solve request failed");
+      throw new Error(result.error || "Solve request failed");
     }
 
     const lines = [
-      `Equation: ${result.equation_name}`,
+      `Equation: ${result.equation}`,
       `Category: ${result.category}`,
-      `Solved for: ${result.solve_for}`,
+      `Solved for: ${result.solveFor}`,
       `Result: ${result.result}`,
       "",
       "Steps:",
