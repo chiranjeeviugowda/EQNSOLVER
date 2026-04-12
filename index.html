@@ -1,51 +1,66 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neon Equation Solver</title>
+    <title>Engineering Equation Solver</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="app-shell">
-      <h1>Engineering Equation Solver</h1>
-      <p class="subtitle">Neon-powered full-stack computation workspace</p>
+      <header class="app-header">
+        <h1>Engineering Equation Solver</h1>
+        <p class="subtitle">Neon-powered computation workspace</p>
+      </header>
 
-      <section class="card controls">
-        <div class="field-row">
-          <label for="categorySelect">Category</label>
-          <select id="categorySelect"></select>
-        </div>
+      <div class="layout">
+        <section class="card controls">
+          <div class="field-row">
+            <label for="categorySelect">Category</label>
+            <div class="select-wrap">
+              <select id="categorySelect"></select>
+            </div>
+          </div>
 
-        <div class="field-row">
-          <label for="equationSelect">Equation</label>
-          <select id="equationSelect"></select>
-        </div>
+          <div class="field-row">
+            <label for="equationSelect">Equation</label>
+            <div class="select-wrap">
+              <select id="equationSelect"></select>
+            </div>
+          </div>
 
-        <div class="field-row">
-          <label for="solveForSelect">Solve For</label>
-          <select id="solveForSelect"></select>
-        </div>
+          <div class="field-row" id="formulaRow">
+            <label>Formula</label>
+            <div class="formula-badge" id="formulaDisplay"></div>
+          </div>
 
-        <div class="field-row">
-          <label for="variablesInput">Variables (JSON)</label>
-          <textarea
-            id="variablesInput"
-            rows="6"
-            placeholder='{"V": 20, "I": 5}'
-          ></textarea>
-        </div>
+          <div class="field-row">
+            <label for="solveForSelect">Solve For</label>
+            <div class="select-wrap">
+              <select id="solveForSelect"></select>
+            </div>
+          </div>
 
-        <button id="solveButton">Solve Equation</button>
-      </section>
+          <div class="field-row">
+            <label>Known Variables</label>
+            <div id="variableInputs" class="variable-grid"></div>
+          </div>
 
-      <section class="card output">
-        <h2>Result</h2>
-        <pre id="resultDisplay">Waiting for input...</pre>
-      </section>
+          <button id="solveButton">
+            <span id="btnLabel">Solve</span>
+            <span id="btnSpinner" class="spinner hidden"></span>
+          </button>
+        </section>
+
+        <section class="card output">
+          <div class="output-header">
+            <h2>Result</h2>
+            <div id="statusBadge" class="status-badge"></div>
+          </div>
+          <div id="resultDisplay" class="result-idle">Select an equation and click Solve.</div>
+        </section>
+      </div>
     </main>
-
     <script src="app.js"></script>
   </body>
 </html>
