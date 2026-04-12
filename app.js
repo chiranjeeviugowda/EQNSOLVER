@@ -1,124 +1,259 @@
 const EQUATIONS_PATH = "/backend/data/equations.json";
 
-const categorySelect = document.getElementById("categorySelect");
-const equationSelect = document.getElementById("equationSelect");
-const solveForSelect = document.getElementById("solveForSelect");
-const variablesInput = document.getElementById("variablesInput");
-const solveButton = document.getElementById("solveButton");
-const resultDisplay = document.getElementById("resultDisplay");
+const categorySelect   = document.getElementById("categorySelect");
+const equationSelect   = document.getElementById("equationSelect");
+const solveForSelect   = document.getElementById("solveForSelect");
+const variableInputs   = document.getElementById("variableInputs");
+const formulaDisplay   = document.getElementById("formulaDisplay");
+const solveButton      = document.getElementById("solveButton");
+const btnLabel         = document.getElementById("btnLabel");
+const btnSpinner       = document.getElementById("btnSpinner");
+const resultDisplay    = document.getElementById("resultDisplay");
+const statusBadge      = document.getElementById("statusBadge");
 
 let equationsCache = [];
 
-function setResult(text) {
-  resultDisplay.textContent = text;
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function uniqueCategories(eqs) {
+  return [...new Set(eqs.map(e => e.category))].sort();
 }
 
-function uniqueCategories(equations) {
-  return [...new Set(equations.map((e) => e.category))].sort();
+function getEquation(name) {
+  return equationsCache.find(e => e.name === name) || null;
 }
 
-function renderCategories(categories) {
-  categorySelect.innerHTML = categories
-    .map((cat) => `<option value="${cat}">${cat}</option>`)
+function setLoading(on) {
+  solveButton.disabled = on;
+  btnLabel.textContent = on ? "Solving..." : "Solve";
+  btnSpinner.classList.toggle("hidden", !on);
+}
+
+function setStatus(type, text) {
+  statusBadge.textContent = text;
+  statusBadge.className = "status-badge " + (type || "");
+}
+
+function showIdle(msg) {
+  resultDisplay.className = "result-idle";
+  resultDisplay.textContent = msg;
+  setStatus("", "");
+}
+
+function showError(msg) {
+  resultDisplay.className = "result-error";
+  resultDisplay.textContent = msg;
+  setStatus("err", "Error");
+}
+
+function showResult(data) {
+  setStatus("ok", "Solved");
+
+  const hero = document.createElement("div");
+  hero.className = "result-hero";
+  hero.innerHTML = `
+    <span class="result-var">${escHtml(data.solveFor)}</span>
+    <span class="result-eq">=</span>
+    <span class="result-val">${escHtml(String(data.result))}</span>
+  `;
+
+  const meta = document.createElement("div");
+  meta.className = "result-meta";
+  [
+    ["Equation", data.equation],
+    ["Category", data.category],
+    ["Formula",  data.formula ?? ""],
+  ].forEach(([k, v]) => {
+    if (!v) return;
+    meta.innerHTML += `
+      <div class="meta-row">
+        <span class="meta-key">${escHtml(k)}</span>
+        <span class="meta-val">${escHtml(v)}</span>
+      </div>`;
+  });
+
+  const stepsBlock = document.createElement("div");
+  stepsBlock.className = "steps-block";
+  stepsBlock.innerHTML = `<div class="steps-title">Solution Steps</div>`;
+  const ul = document.createElement("ul");
+  ul.className = "steps-list";
+  (data.steps || []).forEach((s, i) => {
+    ul.innerHTML += `<li><span class="step-num">${i + 1}.</span>${escHtml(s)}</li>`;
+  });
+  stepsBlock.appendChild(ul);
+
+  resultDisplay.className = "result-success";
+  resultDisplay.replaceChildren(hero, meta, stepsBlock);
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+// ── Render helpers ────────────────────────────────────────────────────────────
+
+function renderCategories(cats) {
+  categorySelect.innerHTML = cats
+    .map(c => `<option value="${escHtml(c)}">${escHtml(c)}</option>`)
     .join("");
 }
 
 function renderEquations(category) {
-  const filtered = equationsCache.filter((eq) => eq.category === category);
+  const filtered = equationsCache.filter(e => e.category === category);
   equationSelect.innerHTML = filtered
-    .map((eq) => `<option value="${eq.name}">${eq.name}</option>`)
+    .map(e => `<option value="${escHtml(e.name)}">${escHtml(e.name)}</option>`)
     .join("");
-
-  if (filtered.length > 0) {
-    renderSolveFor(filtered[0].name);
-  }
+  if (filtered.length) renderEquationDetails(filtered[0].name);
 }
 
-function renderSolveFor(equationName) {
-  const equation = equationsCache.find((eq) => eq.name === equationName);
-  if (!equation) {
+function renderEquationDetails(equationName) {
+  const eq = getEquation(equationName);
+  if (!eq) {
+    formulaDisplay.textContent = "";
     solveForSelect.innerHTML = "";
+    variableInputs.innerHTML = "";
     return;
   }
 
-  solveForSelect.innerHTML = equation.variables
-    .map((v) => `<option value="${v}">${v}</option>`)
+  formulaDisplay.textContent = eq.formula;
+
+  solveForSelect.innerHTML = eq.variables
+    .map(v => `<option value="${escHtml(v)}">${escHtml(v)}</option>`)
     .join("");
 
-  const sampleVars = {};
-  equation.variables.slice(0, -1).forEach((v, idx) => {
-    sampleVars[v] = Number((idx + 2) * 5);
-  });
-  variablesInput.value = JSON.stringify(sampleVars, null, 2);
+  renderVariableInputs(eq, solveForSelect.value);
 }
+
+function renderVariableInputs(eq, solveFor) {
+  const knowns = eq.variables.filter(v => v !== solveFor);
+  variableInputs.innerHTML = "";
+
+  knowns.forEach((v, i) => {
+    const wrap = document.createElement("div");
+    wrap.className = "var-field";
+    wrap.innerHTML = `
+      <label for="var_${escHtml(v)}">${escHtml(v)}</label>
+      <input
+        id="var_${escHtml(v)}"
+        type="number"
+        step="any"
+        placeholder="${(i + 2) * 5}"
+        data-var="${escHtml(v)}"
+      />
+      <span class="hint">numeric value</span>
+    `;
+    variableInputs.appendChild(wrap);
+  });
+}
+
+// ── Data loading ──────────────────────────────────────────────────────────────
 
 async function loadEquations() {
   try {
-    const response = await fetch(EQUATIONS_PATH);
-    if (!response.ok) {
-      throw new Error(`Equation load failed (${response.status})`);
-    }
+    const res = await fetch(EQUATIONS_PATH);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    equationsCache = await res.json();
 
-    equationsCache = await response.json();
-    const categories = uniqueCategories(equationsCache);
+    const cats = uniqueCategories(equationsCache);
+    renderCategories(cats);
+    if (cats.length) renderEquations(cats[0]);
 
-    renderCategories(categories);
-
-    if (categories.length > 0) {
-      renderEquations(categories[0]);
-    }
-
-    setResult(`Loaded ${equationsCache.length} engineering equations.`);
-  } catch (error) {
-    setResult(`Failed to load equations: ${error.message}`);
+    showIdle(`${equationsCache.length} equations loaded. Select one and click Solve.`);
+  } catch (err) {
+    showError(`Failed to load equations: ${err.message}`);
   }
+}
+
+// ── Solve ─────────────────────────────────────────────────────────────────────
+
+function collectVariables(eq, solveFor) {
+  const knowns = eq.variables.filter(v => v !== solveFor);
+  const vars = {};
+  const errors = [];
+
+  knowns.forEach(v => {
+    const input = document.querySelector(`input[data-var="${v}"]`);
+    input?.classList.remove("error");
+
+    const raw = input?.value.trim();
+    if (raw === "" || raw === undefined) {
+      errors.push(`${v} is required`);
+      input?.classList.add("error");
+      return;
+    }
+
+    const num = Number(raw);
+    if (!Number.isFinite(num)) {
+      errors.push(`${v} must be a valid number`);
+      input?.classList.add("error");
+      return;
+    }
+
+    vars[v] = num;
+  });
+
+  return { vars, errors };
 }
 
 async function solveCurrentEquation() {
+  const eqName   = equationSelect.value;
+  const solveFor = solveForSelect.value;
+  const eq       = getEquation(eqName);
+
+  if (!eq) { showError("No equation selected."); return; }
+
+  const { vars, errors } = collectVariables(eq, solveFor);
+  if (errors.length) { showError(errors.join("\n")); return; }
+
+  setLoading(true);
   try {
-    const variables = JSON.parse(variablesInput.value || "{}");
-
-    const payload = {
-      equation: equationSelect.value,
-      solveFor: solveForSelect.value,
-      variables,
-    };
-
-    const response = await fetch("/api/solve", {
+    const res = await fetch("/api/solve", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ equation: eqName, solveFor, variables: vars }),
     });
 
-    const result = await response.json();
-    if (!response.ok) {
-      throw new Error(result.error || "Solve request failed");
-    }
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
 
-    const lines = [
-      `Equation: ${result.equation}`,
-      `Category: ${result.category}`,
-      `Solved for: ${result.solveFor}`,
-      `Result: ${result.result}`,
-      "",
-      "Steps:",
-      ...result.steps.map((s, i) => `${i + 1}. ${s}`),
-    ];
-
-    setResult(lines.join("\n"));
-  } catch (error) {
-    setResult(`Error: ${error.message}`);
+    // Normalise response — backend returns equation as object or string
+    showResult({
+      result:   data.result,
+      solveFor: data.solveFor ?? solveFor,
+      equation: typeof data.equation === "object"
+        ? (data.equation?.name ?? eqName)
+        : (data.equation ?? eqName),
+      category: typeof data.equation === "object"
+        ? (data.equation?.category ?? eq.category)
+        : eq.category,
+      formula:  typeof data.equation === "object"
+        ? (data.equation?.formula ?? eq.formula)
+        : eq.formula,
+      steps:    data.steps ?? [],
+    });
+  } catch (err) {
+    showError(err.message);
+  } finally {
+    setLoading(false);
   }
 }
 
-categorySelect.addEventListener("change", () => {
-  renderEquations(categorySelect.value);
-});
+// ── Events ────────────────────────────────────────────────────────────────────
 
-equationSelect.addEventListener("change", () => {
-  renderSolveFor(equationSelect.value);
+categorySelect.addEventListener("change", () => renderEquations(categorySelect.value));
+
+equationSelect.addEventListener("change", () => renderEquationDetails(equationSelect.value));
+
+solveForSelect.addEventListener("change", () => {
+  const eq = getEquation(equationSelect.value);
+  if (eq) renderVariableInputs(eq, solveForSelect.value);
 });
 
 solveButton.addEventListener("click", solveCurrentEquation);
+
+// ── Init ──────────────────────────────────────────────────────────────────────
 
 loadEquations();
