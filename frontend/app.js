@@ -80,8 +80,8 @@ async function solveCurrentEquation() {
     const variables = JSON.parse(variablesInput.value || "{}");
 
     const payload = {
-      equation_name: equationSelect.value,
-      solve_for: solveForSelect.value,
+      equation: equationSelect.value,
+      solveFor: solveForSelect.value,
       variables,
     };
 
