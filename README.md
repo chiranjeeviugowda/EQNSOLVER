@@ -1,48 +1,49 @@
 # Engineering Equation Solver
 
-Full-stack equation solver with a neon-themed frontend and FastAPI backend.
+Serverless-ready equation solver built for Vercel.
 
-## Project Structure
+## Structure
 
-- `frontend/` Vanilla JavaScript UI
-- `backend/` FastAPI service, symbolic solver engine, and equation database
+- `api/solve.js` Vercel serverless endpoint
+- `backend/services/solver.js` reusable solver engine
+- `backend/data/equations.json` full equations dataset
+- `frontend/index.html` user interface
+- `frontend/styles.css` neon dark theme styling
+- `frontend/app.js` frontend data loading and API integration
 
-## Backend Setup
-
-```bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-## Frontend Setup
-
-Serve the `frontend` folder with any static server:
+## Run Locally
 
 ```bash
-cd frontend
-python -m http.server 5500
+npm install
+npm run dev
 ```
 
-Then open `http://127.0.0.1:5500`.
+Then open `http://localhost:3000/frontend/`.
 
 ## API
 
-- `GET /health`
-- `GET /equations?category=Mechanics`
-- `POST /solve`
+### `POST /api/solve`
 
-Example solve request:
+Request body:
 
 ```json
 {
-  "equation_name": "Electrical - Ohm Law v01",
-  "solve_for": "V",
+  "equation": "Electrical - Ohm Law v01",
+  "solveFor": "V",
   "variables": {
     "I": 5,
     "R": 4
   }
+}
+```
+
+Response:
+
+```json
+{
+  "result": 20,
+  "steps": [
+    "Selected equation: Electrical - Ohm Law v01"
+  ]
 }
 ```
