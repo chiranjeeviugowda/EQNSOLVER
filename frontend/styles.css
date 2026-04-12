@@ -1,0 +1,112 @@
+:root {
+  --bg: #070914;
+  --panel: rgba(16, 20, 37, 0.85);
+  --cyan: #40f5ff;
+  --pink: #ff46d2;
+  --purple: #9b59ff;
+  --text: #e8f4ff;
+  --muted: #97a7c3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, system-ui, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 10% 20%, #121936 0%, var(--bg) 40%),
+    linear-gradient(120deg, #070914 0%, #120c24 100%);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.app-shell {
+  width: min(950px, 92vw);
+  margin: 32px auto;
+}
+
+h1 {
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 15px rgba(64, 245, 255, 0.5);
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.card {
+  margin-top: 22px;
+  background: var(--panel);
+  border: 1px solid rgba(155, 89, 255, 0.4);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 22px rgba(155, 89, 255, 0.2), inset 0 0 20px rgba(64, 245, 255, 0.05);
+}
+
+.controls {
+  display: grid;
+  gap: 14px;
+}
+
+.field-row {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+
+select,
+textarea,
+button {
+  border-radius: 10px;
+  border: 1px solid rgba(64, 245, 255, 0.4);
+  background: rgba(8, 12, 24, 0.95);
+  color: var(--text);
+  padding: 10px 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+select:focus,
+textarea:focus,
+button:hover {
+  border-color: var(--pink);
+  box-shadow: 0 0 10px rgba(255, 70, 210, 0.6);
+}
+
+button {
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(120deg, rgba(64, 245, 255, 0.2), rgba(155, 89, 255, 0.2));
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.output h2 {
+  margin: 0 0 12px;
+}
+
+#resultDisplay {
+  background: rgba(7, 10, 20, 0.85);
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 70, 210, 0.4);
+  white-space: pre-wrap;
+  min-height: 140px;
+}
+
+@media (max-width: 700px) {
+  .app-shell {
+    width: 94vw;
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Equation Solver</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <h1>Engineering Equation Solver</h1>
+      <p class="subtitle">Neon-powered full-stack computation workspace</p>
+
+      <section class="card controls">
+        <div class="field-row">
+          <label for="categorySelect">Category</label>
+          <select id="categorySelect"></select>
+        </div>
+
+        <div class="field-row">
+          <label for="equationSelect">Equation</label>
+          <select id="equationSelect"></select>
+        </div>
+
+        <div class="field-row">
+          <label for="solveForSelect">Solve For</label>
+          <select id="solveForSelect"></select>
+        </div>
+
+        <div class="field-row">
+          <label for="variablesInput">Variables (JSON)</label>
+          <textarea
+            id="variablesInput"
+            rows="6"
+            placeholder='{"V": 20, "I": 5}'
+          ></textarea>
+        </div>
+
+        <button id="solveButton">Solve Equation</button>
+      </section>
+
+      <section class="card output">
+        <h2>Result</h2>
+        <pre id="resultDisplay">Waiting for input...</pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

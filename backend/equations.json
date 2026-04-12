@@ -1,0 +1,3787 @@
+[
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Newton Second Law v01",
+    "formula": "F = m*a",
+    "variables": [
+      "F",
+      "m",
+      "a"
+    ],
+    "description": "Relates force, mass, and acceleration. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Newton Second Law v02",
+    "formula": "F = m*a",
+    "variables": [
+      "F",
+      "m",
+      "a"
+    ],
+    "description": "Relates force, mass, and acceleration. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Newton Second Law v03",
+    "formula": "F = m*a",
+    "variables": [
+      "F",
+      "m",
+      "a"
+    ],
+    "description": "Relates force, mass, and acceleration. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Newton Second Law v04",
+    "formula": "F = m*a",
+    "variables": [
+      "F",
+      "m",
+      "a"
+    ],
+    "description": "Relates force, mass, and acceleration. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Newton Second Law v05",
+    "formula": "F = m*a",
+    "variables": [
+      "F",
+      "m",
+      "a"
+    ],
+    "description": "Relates force, mass, and acceleration. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Kinetic Energy v01",
+    "formula": "KE = 0.5*m*v**2",
+    "variables": [
+      "KE",
+      "m",
+      "v"
+    ],
+    "description": "Translational kinetic energy. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Kinetic Energy v02",
+    "formula": "KE = 0.5*m*v**2",
+    "variables": [
+      "KE",
+      "m",
+      "v"
+    ],
+    "description": "Translational kinetic energy. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Kinetic Energy v03",
+    "formula": "KE = 0.5*m*v**2",
+    "variables": [
+      "KE",
+      "m",
+      "v"
+    ],
+    "description": "Translational kinetic energy. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Kinetic Energy v04",
+    "formula": "KE = 0.5*m*v**2",
+    "variables": [
+      "KE",
+      "m",
+      "v"
+    ],
+    "description": "Translational kinetic energy. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Kinetic Energy v05",
+    "formula": "KE = 0.5*m*v**2",
+    "variables": [
+      "KE",
+      "m",
+      "v"
+    ],
+    "description": "Translational kinetic energy. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Potential Energy v01",
+    "formula": "PE = m*g*h",
+    "variables": [
+      "PE",
+      "m",
+      "g",
+      "h"
+    ],
+    "description": "Gravitational potential energy. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Potential Energy v02",
+    "formula": "PE = m*g*h",
+    "variables": [
+      "PE",
+      "m",
+      "g",
+      "h"
+    ],
+    "description": "Gravitational potential energy. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Potential Energy v03",
+    "formula": "PE = m*g*h",
+    "variables": [
+      "PE",
+      "m",
+      "g",
+      "h"
+    ],
+    "description": "Gravitational potential energy. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Potential Energy v04",
+    "formula": "PE = m*g*h",
+    "variables": [
+      "PE",
+      "m",
+      "g",
+      "h"
+    ],
+    "description": "Gravitational potential energy. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Potential Energy v05",
+    "formula": "PE = m*g*h",
+    "variables": [
+      "PE",
+      "m",
+      "g",
+      "h"
+    ],
+    "description": "Gravitational potential energy. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Linear Momentum v01",
+    "formula": "p = m*v",
+    "variables": [
+      "p",
+      "m",
+      "v"
+    ],
+    "description": "Linear momentum of a body. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Linear Momentum v02",
+    "formula": "p = m*v",
+    "variables": [
+      "p",
+      "m",
+      "v"
+    ],
+    "description": "Linear momentum of a body. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Linear Momentum v03",
+    "formula": "p = m*v",
+    "variables": [
+      "p",
+      "m",
+      "v"
+    ],
+    "description": "Linear momentum of a body. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Linear Momentum v04",
+    "formula": "p = m*v",
+    "variables": [
+      "p",
+      "m",
+      "v"
+    ],
+    "description": "Linear momentum of a body. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Linear Momentum v05",
+    "formula": "p = m*v",
+    "variables": [
+      "p",
+      "m",
+      "v"
+    ],
+    "description": "Linear momentum of a body. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Work v01",
+    "formula": "W = F*d",
+    "variables": [
+      "W",
+      "F",
+      "d"
+    ],
+    "description": "Mechanical work by constant force. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Work v02",
+    "formula": "W = F*d",
+    "variables": [
+      "W",
+      "F",
+      "d"
+    ],
+    "description": "Mechanical work by constant force. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Work v03",
+    "formula": "W = F*d",
+    "variables": [
+      "W",
+      "F",
+      "d"
+    ],
+    "description": "Mechanical work by constant force. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Work v04",
+    "formula": "W = F*d",
+    "variables": [
+      "W",
+      "F",
+      "d"
+    ],
+    "description": "Mechanical work by constant force. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Work v05",
+    "formula": "W = F*d",
+    "variables": [
+      "W",
+      "F",
+      "d"
+    ],
+    "description": "Mechanical work by constant force. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Power v01",
+    "formula": "P = W/t",
+    "variables": [
+      "P",
+      "W",
+      "t"
+    ],
+    "description": "Rate of work transfer. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Power v02",
+    "formula": "P = W/t",
+    "variables": [
+      "P",
+      "W",
+      "t"
+    ],
+    "description": "Rate of work transfer. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Power v03",
+    "formula": "P = W/t",
+    "variables": [
+      "P",
+      "W",
+      "t"
+    ],
+    "description": "Rate of work transfer. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Power v04",
+    "formula": "P = W/t",
+    "variables": [
+      "P",
+      "W",
+      "t"
+    ],
+    "description": "Rate of work transfer. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Power v05",
+    "formula": "P = W/t",
+    "variables": [
+      "P",
+      "W",
+      "t"
+    ],
+    "description": "Rate of work transfer. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Impulse v01",
+    "formula": "J = F*t",
+    "variables": [
+      "J",
+      "F",
+      "t"
+    ],
+    "description": "Impulse from force over time. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Impulse v02",
+    "formula": "J = F*t",
+    "variables": [
+      "J",
+      "F",
+      "t"
+    ],
+    "description": "Impulse from force over time. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Impulse v03",
+    "formula": "J = F*t",
+    "variables": [
+      "J",
+      "F",
+      "t"
+    ],
+    "description": "Impulse from force over time. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Impulse v04",
+    "formula": "J = F*t",
+    "variables": [
+      "J",
+      "F",
+      "t"
+    ],
+    "description": "Impulse from force over time. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Impulse v05",
+    "formula": "J = F*t",
+    "variables": [
+      "J",
+      "F",
+      "t"
+    ],
+    "description": "Impulse from force over time. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Angular Momentum v01",
+    "formula": "L = I*omega",
+    "variables": [
+      "L",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational momentum relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Angular Momentum v02",
+    "formula": "L = I*omega",
+    "variables": [
+      "L",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational momentum relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Angular Momentum v03",
+    "formula": "L = I*omega",
+    "variables": [
+      "L",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational momentum relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Angular Momentum v04",
+    "formula": "L = I*omega",
+    "variables": [
+      "L",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational momentum relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Angular Momentum v05",
+    "formula": "L = I*omega",
+    "variables": [
+      "L",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational momentum relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Torque v01",
+    "formula": "tau = I*alpha",
+    "variables": [
+      "tau",
+      "I",
+      "alpha"
+    ],
+    "description": "Torque and angular acceleration. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Torque v02",
+    "formula": "tau = I*alpha",
+    "variables": [
+      "tau",
+      "I",
+      "alpha"
+    ],
+    "description": "Torque and angular acceleration. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Torque v03",
+    "formula": "tau = I*alpha",
+    "variables": [
+      "tau",
+      "I",
+      "alpha"
+    ],
+    "description": "Torque and angular acceleration. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Torque v04",
+    "formula": "tau = I*alpha",
+    "variables": [
+      "tau",
+      "I",
+      "alpha"
+    ],
+    "description": "Torque and angular acceleration. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Torque v05",
+    "formula": "tau = I*alpha",
+    "variables": [
+      "tau",
+      "I",
+      "alpha"
+    ],
+    "description": "Torque and angular acceleration. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Hooke Law v01",
+    "formula": "F = k*x",
+    "variables": [
+      "F",
+      "k",
+      "x"
+    ],
+    "description": "Spring restoring force. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Hooke Law v02",
+    "formula": "F = k*x",
+    "variables": [
+      "F",
+      "k",
+      "x"
+    ],
+    "description": "Spring restoring force. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Hooke Law v03",
+    "formula": "F = k*x",
+    "variables": [
+      "F",
+      "k",
+      "x"
+    ],
+    "description": "Spring restoring force. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Hooke Law v04",
+    "formula": "F = k*x",
+    "variables": [
+      "F",
+      "k",
+      "x"
+    ],
+    "description": "Spring restoring force. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Hooke Law v05",
+    "formula": "F = k*x",
+    "variables": [
+      "F",
+      "k",
+      "x"
+    ],
+    "description": "Spring restoring force. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Centripetal Force v01",
+    "formula": "F = m*v**2/r",
+    "variables": [
+      "F",
+      "m",
+      "v",
+      "r"
+    ],
+    "description": "Force for circular motion. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Centripetal Force v02",
+    "formula": "F = m*v**2/r",
+    "variables": [
+      "F",
+      "m",
+      "v",
+      "r"
+    ],
+    "description": "Force for circular motion. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Centripetal Force v03",
+    "formula": "F = m*v**2/r",
+    "variables": [
+      "F",
+      "m",
+      "v",
+      "r"
+    ],
+    "description": "Force for circular motion. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Centripetal Force v04",
+    "formula": "F = m*v**2/r",
+    "variables": [
+      "F",
+      "m",
+      "v",
+      "r"
+    ],
+    "description": "Force for circular motion. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Centripetal Force v05",
+    "formula": "F = m*v**2/r",
+    "variables": [
+      "F",
+      "m",
+      "v",
+      "r"
+    ],
+    "description": "Force for circular motion. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Rotational KE v01",
+    "formula": "KEr = 0.5*I*omega**2",
+    "variables": [
+      "KEr",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational kinetic energy. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Rotational KE v02",
+    "formula": "KEr = 0.5*I*omega**2",
+    "variables": [
+      "KEr",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational kinetic energy. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Rotational KE v03",
+    "formula": "KEr = 0.5*I*omega**2",
+    "variables": [
+      "KEr",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational kinetic energy. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Rotational KE v04",
+    "formula": "KEr = 0.5*I*omega**2",
+    "variables": [
+      "KEr",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational kinetic energy. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Rotational KE v05",
+    "formula": "KEr = 0.5*I*omega**2",
+    "variables": [
+      "KEr",
+      "I",
+      "omega"
+    ],
+    "description": "Rotational kinetic energy. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Beam Stress v01",
+    "formula": "sigma = M*c/I",
+    "variables": [
+      "sigma",
+      "M",
+      "c",
+      "I"
+    ],
+    "description": "Bending stress in beams. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Beam Stress v02",
+    "formula": "sigma = M*c/I",
+    "variables": [
+      "sigma",
+      "M",
+      "c",
+      "I"
+    ],
+    "description": "Bending stress in beams. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Beam Stress v03",
+    "formula": "sigma = M*c/I",
+    "variables": [
+      "sigma",
+      "M",
+      "c",
+      "I"
+    ],
+    "description": "Bending stress in beams. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Beam Stress v04",
+    "formula": "sigma = M*c/I",
+    "variables": [
+      "sigma",
+      "M",
+      "c",
+      "I"
+    ],
+    "description": "Bending stress in beams. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Mechanics",
+    "name": "Mechanics - Beam Stress v05",
+    "formula": "sigma = M*c/I",
+    "variables": [
+      "sigma",
+      "M",
+      "c",
+      "I"
+    ],
+    "description": "Bending stress in beams. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Ideal Gas Law v01",
+    "formula": "P*V = n*R*T",
+    "variables": [
+      "P",
+      "V",
+      "n",
+      "R",
+      "T"
+    ],
+    "description": "State equation for ideal gas. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Ideal Gas Law v02",
+    "formula": "P*V = n*R*T",
+    "variables": [
+      "P",
+      "V",
+      "n",
+      "R",
+      "T"
+    ],
+    "description": "State equation for ideal gas. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Ideal Gas Law v03",
+    "formula": "P*V = n*R*T",
+    "variables": [
+      "P",
+      "V",
+      "n",
+      "R",
+      "T"
+    ],
+    "description": "State equation for ideal gas. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Ideal Gas Law v04",
+    "formula": "P*V = n*R*T",
+    "variables": [
+      "P",
+      "V",
+      "n",
+      "R",
+      "T"
+    ],
+    "description": "State equation for ideal gas. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Ideal Gas Law v05",
+    "formula": "P*V = n*R*T",
+    "variables": [
+      "P",
+      "V",
+      "n",
+      "R",
+      "T"
+    ],
+    "description": "State equation for ideal gas. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Heat Transfer v01",
+    "formula": "Q = m*cp*dT",
+    "variables": [
+      "Q",
+      "m",
+      "cp",
+      "dT"
+    ],
+    "description": "Sensible heat transfer. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Heat Transfer v02",
+    "formula": "Q = m*cp*dT",
+    "variables": [
+      "Q",
+      "m",
+      "cp",
+      "dT"
+    ],
+    "description": "Sensible heat transfer. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Heat Transfer v03",
+    "formula": "Q = m*cp*dT",
+    "variables": [
+      "Q",
+      "m",
+      "cp",
+      "dT"
+    ],
+    "description": "Sensible heat transfer. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Heat Transfer v04",
+    "formula": "Q = m*cp*dT",
+    "variables": [
+      "Q",
+      "m",
+      "cp",
+      "dT"
+    ],
+    "description": "Sensible heat transfer. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Heat Transfer v05",
+    "formula": "Q = m*cp*dT",
+    "variables": [
+      "Q",
+      "m",
+      "cp",
+      "dT"
+    ],
+    "description": "Sensible heat transfer. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - First Law Closed v01",
+    "formula": "Q = dU + W",
+    "variables": [
+      "Q",
+      "dU",
+      "W"
+    ],
+    "description": "Energy conservation for closed system. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - First Law Closed v02",
+    "formula": "Q = dU + W",
+    "variables": [
+      "Q",
+      "dU",
+      "W"
+    ],
+    "description": "Energy conservation for closed system. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - First Law Closed v03",
+    "formula": "Q = dU + W",
+    "variables": [
+      "Q",
+      "dU",
+      "W"
+    ],
+    "description": "Energy conservation for closed system. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - First Law Closed v04",
+    "formula": "Q = dU + W",
+    "variables": [
+      "Q",
+      "dU",
+      "W"
+    ],
+    "description": "Energy conservation for closed system. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - First Law Closed v05",
+    "formula": "Q = dU + W",
+    "variables": [
+      "Q",
+      "dU",
+      "W"
+    ],
+    "description": "Energy conservation for closed system. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Entropy Change v01",
+    "formula": "dS = Qrev/T",
+    "variables": [
+      "dS",
+      "Qrev",
+      "T"
+    ],
+    "description": "Entropy transfer for reversible process. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Entropy Change v02",
+    "formula": "dS = Qrev/T",
+    "variables": [
+      "dS",
+      "Qrev",
+      "T"
+    ],
+    "description": "Entropy transfer for reversible process. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Entropy Change v03",
+    "formula": "dS = Qrev/T",
+    "variables": [
+      "dS",
+      "Qrev",
+      "T"
+    ],
+    "description": "Entropy transfer for reversible process. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Entropy Change v04",
+    "formula": "dS = Qrev/T",
+    "variables": [
+      "dS",
+      "Qrev",
+      "T"
+    ],
+    "description": "Entropy transfer for reversible process. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Entropy Change v05",
+    "formula": "dS = Qrev/T",
+    "variables": [
+      "dS",
+      "Qrev",
+      "T"
+    ],
+    "description": "Entropy transfer for reversible process. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Thermal Efficiency v01",
+    "formula": "eta = Wout/Qin",
+    "variables": [
+      "eta",
+      "Wout",
+      "Qin"
+    ],
+    "description": "Efficiency of heat engine. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Thermal Efficiency v02",
+    "formula": "eta = Wout/Qin",
+    "variables": [
+      "eta",
+      "Wout",
+      "Qin"
+    ],
+    "description": "Efficiency of heat engine. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Thermal Efficiency v03",
+    "formula": "eta = Wout/Qin",
+    "variables": [
+      "eta",
+      "Wout",
+      "Qin"
+    ],
+    "description": "Efficiency of heat engine. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Thermal Efficiency v04",
+    "formula": "eta = Wout/Qin",
+    "variables": [
+      "eta",
+      "Wout",
+      "Qin"
+    ],
+    "description": "Efficiency of heat engine. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Thermal Efficiency v05",
+    "formula": "eta = Wout/Qin",
+    "variables": [
+      "eta",
+      "Wout",
+      "Qin"
+    ],
+    "description": "Efficiency of heat engine. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Carnot Efficiency v01",
+    "formula": "eta = 1 - Tc/Th",
+    "variables": [
+      "eta",
+      "Tc",
+      "Th"
+    ],
+    "description": "Ideal cycle efficiency limit. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Carnot Efficiency v02",
+    "formula": "eta = 1 - Tc/Th",
+    "variables": [
+      "eta",
+      "Tc",
+      "Th"
+    ],
+    "description": "Ideal cycle efficiency limit. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Carnot Efficiency v03",
+    "formula": "eta = 1 - Tc/Th",
+    "variables": [
+      "eta",
+      "Tc",
+      "Th"
+    ],
+    "description": "Ideal cycle efficiency limit. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Carnot Efficiency v04",
+    "formula": "eta = 1 - Tc/Th",
+    "variables": [
+      "eta",
+      "Tc",
+      "Th"
+    ],
+    "description": "Ideal cycle efficiency limit. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Carnot Efficiency v05",
+    "formula": "eta = 1 - Tc/Th",
+    "variables": [
+      "eta",
+      "Tc",
+      "Th"
+    ],
+    "description": "Ideal cycle efficiency limit. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Conduction v01",
+    "formula": "q = k*A*dT/L",
+    "variables": [
+      "q",
+      "k",
+      "A",
+      "dT",
+      "L"
+    ],
+    "description": "Fourier conduction through slab. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Conduction v02",
+    "formula": "q = k*A*dT/L",
+    "variables": [
+      "q",
+      "k",
+      "A",
+      "dT",
+      "L"
+    ],
+    "description": "Fourier conduction through slab. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Conduction v03",
+    "formula": "q = k*A*dT/L",
+    "variables": [
+      "q",
+      "k",
+      "A",
+      "dT",
+      "L"
+    ],
+    "description": "Fourier conduction through slab. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Conduction v04",
+    "formula": "q = k*A*dT/L",
+    "variables": [
+      "q",
+      "k",
+      "A",
+      "dT",
+      "L"
+    ],
+    "description": "Fourier conduction through slab. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Conduction v05",
+    "formula": "q = k*A*dT/L",
+    "variables": [
+      "q",
+      "k",
+      "A",
+      "dT",
+      "L"
+    ],
+    "description": "Fourier conduction through slab. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Convection v01",
+    "formula": "q = h*A*dT",
+    "variables": [
+      "q",
+      "h",
+      "A",
+      "dT"
+    ],
+    "description": "Newton cooling relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Convection v02",
+    "formula": "q = h*A*dT",
+    "variables": [
+      "q",
+      "h",
+      "A",
+      "dT"
+    ],
+    "description": "Newton cooling relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Convection v03",
+    "formula": "q = h*A*dT",
+    "variables": [
+      "q",
+      "h",
+      "A",
+      "dT"
+    ],
+    "description": "Newton cooling relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Convection v04",
+    "formula": "q = h*A*dT",
+    "variables": [
+      "q",
+      "h",
+      "A",
+      "dT"
+    ],
+    "description": "Newton cooling relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Convection v05",
+    "formula": "q = h*A*dT",
+    "variables": [
+      "q",
+      "h",
+      "A",
+      "dT"
+    ],
+    "description": "Newton cooling relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Radiation v01",
+    "formula": "q = epsilon*sigma*A*(T1**4 - T2**4)",
+    "variables": [
+      "q",
+      "epsilon",
+      "sigma",
+      "A",
+      "T1",
+      "T2"
+    ],
+    "description": "Net thermal radiation exchange. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Radiation v02",
+    "formula": "q = epsilon*sigma*A*(T1**4 - T2**4)",
+    "variables": [
+      "q",
+      "epsilon",
+      "sigma",
+      "A",
+      "T1",
+      "T2"
+    ],
+    "description": "Net thermal radiation exchange. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Radiation v03",
+    "formula": "q = epsilon*sigma*A*(T1**4 - T2**4)",
+    "variables": [
+      "q",
+      "epsilon",
+      "sigma",
+      "A",
+      "T1",
+      "T2"
+    ],
+    "description": "Net thermal radiation exchange. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Radiation v04",
+    "formula": "q = epsilon*sigma*A*(T1**4 - T2**4)",
+    "variables": [
+      "q",
+      "epsilon",
+      "sigma",
+      "A",
+      "T1",
+      "T2"
+    ],
+    "description": "Net thermal radiation exchange. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Radiation v05",
+    "formula": "q = epsilon*sigma*A*(T1**4 - T2**4)",
+    "variables": [
+      "q",
+      "epsilon",
+      "sigma",
+      "A",
+      "T1",
+      "T2"
+    ],
+    "description": "Net thermal radiation exchange. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - COP Refrigerator v01",
+    "formula": "COP = QL/W",
+    "variables": [
+      "COP",
+      "QL",
+      "W"
+    ],
+    "description": "Coefficient of performance for refrigerator. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - COP Refrigerator v02",
+    "formula": "COP = QL/W",
+    "variables": [
+      "COP",
+      "QL",
+      "W"
+    ],
+    "description": "Coefficient of performance for refrigerator. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - COP Refrigerator v03",
+    "formula": "COP = QL/W",
+    "variables": [
+      "COP",
+      "QL",
+      "W"
+    ],
+    "description": "Coefficient of performance for refrigerator. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - COP Refrigerator v04",
+    "formula": "COP = QL/W",
+    "variables": [
+      "COP",
+      "QL",
+      "W"
+    ],
+    "description": "Coefficient of performance for refrigerator. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - COP Refrigerator v05",
+    "formula": "COP = QL/W",
+    "variables": [
+      "COP",
+      "QL",
+      "W"
+    ],
+    "description": "Coefficient of performance for refrigerator. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Mass Flow Energy v01",
+    "formula": "Qdot = mdot*cp*dT",
+    "variables": [
+      "Qdot",
+      "mdot",
+      "cp",
+      "dT"
+    ],
+    "description": "Steady-flow energy transfer. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Mass Flow Energy v02",
+    "formula": "Qdot = mdot*cp*dT",
+    "variables": [
+      "Qdot",
+      "mdot",
+      "cp",
+      "dT"
+    ],
+    "description": "Steady-flow energy transfer. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Mass Flow Energy v03",
+    "formula": "Qdot = mdot*cp*dT",
+    "variables": [
+      "Qdot",
+      "mdot",
+      "cp",
+      "dT"
+    ],
+    "description": "Steady-flow energy transfer. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Mass Flow Energy v04",
+    "formula": "Qdot = mdot*cp*dT",
+    "variables": [
+      "Qdot",
+      "mdot",
+      "cp",
+      "dT"
+    ],
+    "description": "Steady-flow energy transfer. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Mass Flow Energy v05",
+    "formula": "Qdot = mdot*cp*dT",
+    "variables": [
+      "Qdot",
+      "mdot",
+      "cp",
+      "dT"
+    ],
+    "description": "Steady-flow energy transfer. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Polytropic v01",
+    "formula": "P1*V1**n = P2*V2**n",
+    "variables": [
+      "P1",
+      "V1",
+      "n",
+      "P2",
+      "V2"
+    ],
+    "description": "Polytropic compression-expansion. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Polytropic v02",
+    "formula": "P1*V1**n = P2*V2**n",
+    "variables": [
+      "P1",
+      "V1",
+      "n",
+      "P2",
+      "V2"
+    ],
+    "description": "Polytropic compression-expansion. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Polytropic v03",
+    "formula": "P1*V1**n = P2*V2**n",
+    "variables": [
+      "P1",
+      "V1",
+      "n",
+      "P2",
+      "V2"
+    ],
+    "description": "Polytropic compression-expansion. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Polytropic v04",
+    "formula": "P1*V1**n = P2*V2**n",
+    "variables": [
+      "P1",
+      "V1",
+      "n",
+      "P2",
+      "V2"
+    ],
+    "description": "Polytropic compression-expansion. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Polytropic v05",
+    "formula": "P1*V1**n = P2*V2**n",
+    "variables": [
+      "P1",
+      "V1",
+      "n",
+      "P2",
+      "V2"
+    ],
+    "description": "Polytropic compression-expansion. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Speed of Sound v01",
+    "formula": "a = (gamma*R*T)**0.5",
+    "variables": [
+      "a",
+      "gamma",
+      "R",
+      "T"
+    ],
+    "description": "Acoustic speed in ideal gas. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Speed of Sound v02",
+    "formula": "a = (gamma*R*T)**0.5",
+    "variables": [
+      "a",
+      "gamma",
+      "R",
+      "T"
+    ],
+    "description": "Acoustic speed in ideal gas. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Speed of Sound v03",
+    "formula": "a = (gamma*R*T)**0.5",
+    "variables": [
+      "a",
+      "gamma",
+      "R",
+      "T"
+    ],
+    "description": "Acoustic speed in ideal gas. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Speed of Sound v04",
+    "formula": "a = (gamma*R*T)**0.5",
+    "variables": [
+      "a",
+      "gamma",
+      "R",
+      "T"
+    ],
+    "description": "Acoustic speed in ideal gas. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Thermodynamics",
+    "name": "Thermodynamics - Speed of Sound v05",
+    "formula": "a = (gamma*R*T)**0.5",
+    "variables": [
+      "a",
+      "gamma",
+      "R",
+      "T"
+    ],
+    "description": "Acoustic speed in ideal gas. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Ohm Law v01",
+    "formula": "V = I*R",
+    "variables": [
+      "V",
+      "I",
+      "R"
+    ],
+    "description": "Voltage-current-resistance relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Ohm Law v02",
+    "formula": "V = I*R",
+    "variables": [
+      "V",
+      "I",
+      "R"
+    ],
+    "description": "Voltage-current-resistance relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Ohm Law v03",
+    "formula": "V = I*R",
+    "variables": [
+      "V",
+      "I",
+      "R"
+    ],
+    "description": "Voltage-current-resistance relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Ohm Law v04",
+    "formula": "V = I*R",
+    "variables": [
+      "V",
+      "I",
+      "R"
+    ],
+    "description": "Voltage-current-resistance relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Ohm Law v05",
+    "formula": "V = I*R",
+    "variables": [
+      "V",
+      "I",
+      "R"
+    ],
+    "description": "Voltage-current-resistance relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Power v01",
+    "formula": "P = V*I",
+    "variables": [
+      "P",
+      "V",
+      "I"
+    ],
+    "description": "Electrical power in DC circuit. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Power v02",
+    "formula": "P = V*I",
+    "variables": [
+      "P",
+      "V",
+      "I"
+    ],
+    "description": "Electrical power in DC circuit. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Power v03",
+    "formula": "P = V*I",
+    "variables": [
+      "P",
+      "V",
+      "I"
+    ],
+    "description": "Electrical power in DC circuit. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Power v04",
+    "formula": "P = V*I",
+    "variables": [
+      "P",
+      "V",
+      "I"
+    ],
+    "description": "Electrical power in DC circuit. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Power v05",
+    "formula": "P = V*I",
+    "variables": [
+      "P",
+      "V",
+      "I"
+    ],
+    "description": "Electrical power in DC circuit. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistor Loss v01",
+    "formula": "P = I**2*R",
+    "variables": [
+      "P",
+      "I",
+      "R"
+    ],
+    "description": "Joule heating relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistor Loss v02",
+    "formula": "P = I**2*R",
+    "variables": [
+      "P",
+      "I",
+      "R"
+    ],
+    "description": "Joule heating relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistor Loss v03",
+    "formula": "P = I**2*R",
+    "variables": [
+      "P",
+      "I",
+      "R"
+    ],
+    "description": "Joule heating relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistor Loss v04",
+    "formula": "P = I**2*R",
+    "variables": [
+      "P",
+      "I",
+      "R"
+    ],
+    "description": "Joule heating relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistor Loss v05",
+    "formula": "P = I**2*R",
+    "variables": [
+      "P",
+      "I",
+      "R"
+    ],
+    "description": "Joule heating relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Capacitor Charge v01",
+    "formula": "Q = C*V",
+    "variables": [
+      "Q",
+      "C",
+      "V"
+    ],
+    "description": "Stored charge on capacitor. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Capacitor Charge v02",
+    "formula": "Q = C*V",
+    "variables": [
+      "Q",
+      "C",
+      "V"
+    ],
+    "description": "Stored charge on capacitor. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Capacitor Charge v03",
+    "formula": "Q = C*V",
+    "variables": [
+      "Q",
+      "C",
+      "V"
+    ],
+    "description": "Stored charge on capacitor. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Capacitor Charge v04",
+    "formula": "Q = C*V",
+    "variables": [
+      "Q",
+      "C",
+      "V"
+    ],
+    "description": "Stored charge on capacitor. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Capacitor Charge v05",
+    "formula": "Q = C*V",
+    "variables": [
+      "Q",
+      "C",
+      "V"
+    ],
+    "description": "Stored charge on capacitor. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Inductor Voltage v01",
+    "formula": "V = L*di_dt",
+    "variables": [
+      "V",
+      "L",
+      "di_dt"
+    ],
+    "description": "Induced voltage in inductor. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Inductor Voltage v02",
+    "formula": "V = L*di_dt",
+    "variables": [
+      "V",
+      "L",
+      "di_dt"
+    ],
+    "description": "Induced voltage in inductor. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Inductor Voltage v03",
+    "formula": "V = L*di_dt",
+    "variables": [
+      "V",
+      "L",
+      "di_dt"
+    ],
+    "description": "Induced voltage in inductor. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Inductor Voltage v04",
+    "formula": "V = L*di_dt",
+    "variables": [
+      "V",
+      "L",
+      "di_dt"
+    ],
+    "description": "Induced voltage in inductor. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Inductor Voltage v05",
+    "formula": "V = L*di_dt",
+    "variables": [
+      "V",
+      "L",
+      "di_dt"
+    ],
+    "description": "Induced voltage in inductor. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - AC Reactance v01",
+    "formula": "Xl = 2*pi*f*L",
+    "variables": [
+      "Xl",
+      "f",
+      "L"
+    ],
+    "description": "Inductive reactance. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - AC Reactance v02",
+    "formula": "Xl = 2*pi*f*L",
+    "variables": [
+      "Xl",
+      "f",
+      "L"
+    ],
+    "description": "Inductive reactance. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - AC Reactance v03",
+    "formula": "Xl = 2*pi*f*L",
+    "variables": [
+      "Xl",
+      "f",
+      "L"
+    ],
+    "description": "Inductive reactance. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - AC Reactance v04",
+    "formula": "Xl = 2*pi*f*L",
+    "variables": [
+      "Xl",
+      "f",
+      "L"
+    ],
+    "description": "Inductive reactance. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - AC Reactance v05",
+    "formula": "Xl = 2*pi*f*L",
+    "variables": [
+      "Xl",
+      "f",
+      "L"
+    ],
+    "description": "Inductive reactance. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Cap Reactance v01",
+    "formula": "Xc = 1/(2*pi*f*C)",
+    "variables": [
+      "Xc",
+      "f",
+      "C"
+    ],
+    "description": "Capacitive reactance. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Cap Reactance v02",
+    "formula": "Xc = 1/(2*pi*f*C)",
+    "variables": [
+      "Xc",
+      "f",
+      "C"
+    ],
+    "description": "Capacitive reactance. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Cap Reactance v03",
+    "formula": "Xc = 1/(2*pi*f*C)",
+    "variables": [
+      "Xc",
+      "f",
+      "C"
+    ],
+    "description": "Capacitive reactance. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Cap Reactance v04",
+    "formula": "Xc = 1/(2*pi*f*C)",
+    "variables": [
+      "Xc",
+      "f",
+      "C"
+    ],
+    "description": "Capacitive reactance. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Cap Reactance v05",
+    "formula": "Xc = 1/(2*pi*f*C)",
+    "variables": [
+      "Xc",
+      "f",
+      "C"
+    ],
+    "description": "Capacitive reactance. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RL v01",
+    "formula": "Z = (R**2 + Xl**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xl"
+    ],
+    "description": "Impedance magnitude of RL circuit. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RL v02",
+    "formula": "Z = (R**2 + Xl**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xl"
+    ],
+    "description": "Impedance magnitude of RL circuit. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RL v03",
+    "formula": "Z = (R**2 + Xl**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xl"
+    ],
+    "description": "Impedance magnitude of RL circuit. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RL v04",
+    "formula": "Z = (R**2 + Xl**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xl"
+    ],
+    "description": "Impedance magnitude of RL circuit. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RL v05",
+    "formula": "Z = (R**2 + Xl**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xl"
+    ],
+    "description": "Impedance magnitude of RL circuit. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RC v01",
+    "formula": "Z = (R**2 + Xc**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xc"
+    ],
+    "description": "Impedance magnitude of RC circuit. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RC v02",
+    "formula": "Z = (R**2 + Xc**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xc"
+    ],
+    "description": "Impedance magnitude of RC circuit. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RC v03",
+    "formula": "Z = (R**2 + Xc**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xc"
+    ],
+    "description": "Impedance magnitude of RC circuit. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RC v04",
+    "formula": "Z = (R**2 + Xc**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xc"
+    ],
+    "description": "Impedance magnitude of RC circuit. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Impedance RC v05",
+    "formula": "Z = (R**2 + Xc**2)**0.5",
+    "variables": [
+      "Z",
+      "R",
+      "Xc"
+    ],
+    "description": "Impedance magnitude of RC circuit. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Transformer v01",
+    "formula": "Vp/Vs = Np/Ns",
+    "variables": [
+      "Vp",
+      "Vs",
+      "Np",
+      "Ns"
+    ],
+    "description": "Ideal transformer turns ratio. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Transformer v02",
+    "formula": "Vp/Vs = Np/Ns",
+    "variables": [
+      "Vp",
+      "Vs",
+      "Np",
+      "Ns"
+    ],
+    "description": "Ideal transformer turns ratio. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Transformer v03",
+    "formula": "Vp/Vs = Np/Ns",
+    "variables": [
+      "Vp",
+      "Vs",
+      "Np",
+      "Ns"
+    ],
+    "description": "Ideal transformer turns ratio. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Transformer v04",
+    "formula": "Vp/Vs = Np/Ns",
+    "variables": [
+      "Vp",
+      "Vs",
+      "Np",
+      "Ns"
+    ],
+    "description": "Ideal transformer turns ratio. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Transformer v05",
+    "formula": "Vp/Vs = Np/Ns",
+    "variables": [
+      "Vp",
+      "Vs",
+      "Np",
+      "Ns"
+    ],
+    "description": "Ideal transformer turns ratio. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Current Density v01",
+    "formula": "J = I/A",
+    "variables": [
+      "J",
+      "I",
+      "A"
+    ],
+    "description": "Current per cross-sectional area. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Current Density v02",
+    "formula": "J = I/A",
+    "variables": [
+      "J",
+      "I",
+      "A"
+    ],
+    "description": "Current per cross-sectional area. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Current Density v03",
+    "formula": "J = I/A",
+    "variables": [
+      "J",
+      "I",
+      "A"
+    ],
+    "description": "Current per cross-sectional area. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Current Density v04",
+    "formula": "J = I/A",
+    "variables": [
+      "J",
+      "I",
+      "A"
+    ],
+    "description": "Current per cross-sectional area. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Current Density v05",
+    "formula": "J = I/A",
+    "variables": [
+      "J",
+      "I",
+      "A"
+    ],
+    "description": "Current per cross-sectional area. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistivity v01",
+    "formula": "R = rho*L/A",
+    "variables": [
+      "R",
+      "rho",
+      "L",
+      "A"
+    ],
+    "description": "Resistance from material properties. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistivity v02",
+    "formula": "R = rho*L/A",
+    "variables": [
+      "R",
+      "rho",
+      "L",
+      "A"
+    ],
+    "description": "Resistance from material properties. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistivity v03",
+    "formula": "R = rho*L/A",
+    "variables": [
+      "R",
+      "rho",
+      "L",
+      "A"
+    ],
+    "description": "Resistance from material properties. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistivity v04",
+    "formula": "R = rho*L/A",
+    "variables": [
+      "R",
+      "rho",
+      "L",
+      "A"
+    ],
+    "description": "Resistance from material properties. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - Resistivity v05",
+    "formula": "R = rho*L/A",
+    "variables": [
+      "R",
+      "rho",
+      "L",
+      "A"
+    ],
+    "description": "Resistance from material properties. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - RC Time Constant v01",
+    "formula": "tau = R*C",
+    "variables": [
+      "tau",
+      "R",
+      "C"
+    ],
+    "description": "First-order RC transient constant. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - RC Time Constant v02",
+    "formula": "tau = R*C",
+    "variables": [
+      "tau",
+      "R",
+      "C"
+    ],
+    "description": "First-order RC transient constant. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - RC Time Constant v03",
+    "formula": "tau = R*C",
+    "variables": [
+      "tau",
+      "R",
+      "C"
+    ],
+    "description": "First-order RC transient constant. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - RC Time Constant v04",
+    "formula": "tau = R*C",
+    "variables": [
+      "tau",
+      "R",
+      "C"
+    ],
+    "description": "First-order RC transient constant. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Electrical",
+    "name": "Electrical - RC Time Constant v05",
+    "formula": "tau = R*C",
+    "variables": [
+      "tau",
+      "R",
+      "C"
+    ],
+    "description": "First-order RC transient constant. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Continuity v01",
+    "formula": "mdot = rho*A*V",
+    "variables": [
+      "mdot",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Mass conservation in duct flow. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Continuity v02",
+    "formula": "mdot = rho*A*V",
+    "variables": [
+      "mdot",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Mass conservation in duct flow. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Continuity v03",
+    "formula": "mdot = rho*A*V",
+    "variables": [
+      "mdot",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Mass conservation in duct flow. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Continuity v04",
+    "formula": "mdot = rho*A*V",
+    "variables": [
+      "mdot",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Mass conservation in duct flow. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Continuity v05",
+    "formula": "mdot = rho*A*V",
+    "variables": [
+      "mdot",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Mass conservation in duct flow. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Bernoulli v01",
+    "formula": "P + 0.5*rho*V**2 + rho*g*z = Pt",
+    "variables": [
+      "P",
+      "rho",
+      "V",
+      "g",
+      "z",
+      "Pt"
+    ],
+    "description": "Total pressure head relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Bernoulli v02",
+    "formula": "P + 0.5*rho*V**2 + rho*g*z = Pt",
+    "variables": [
+      "P",
+      "rho",
+      "V",
+      "g",
+      "z",
+      "Pt"
+    ],
+    "description": "Total pressure head relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Bernoulli v03",
+    "formula": "P + 0.5*rho*V**2 + rho*g*z = Pt",
+    "variables": [
+      "P",
+      "rho",
+      "V",
+      "g",
+      "z",
+      "Pt"
+    ],
+    "description": "Total pressure head relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Bernoulli v04",
+    "formula": "P + 0.5*rho*V**2 + rho*g*z = Pt",
+    "variables": [
+      "P",
+      "rho",
+      "V",
+      "g",
+      "z",
+      "Pt"
+    ],
+    "description": "Total pressure head relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Bernoulli v05",
+    "formula": "P + 0.5*rho*V**2 + rho*g*z = Pt",
+    "variables": [
+      "P",
+      "rho",
+      "V",
+      "g",
+      "z",
+      "Pt"
+    ],
+    "description": "Total pressure head relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Dynamic Pressure v01",
+    "formula": "q = 0.5*rho*V**2",
+    "variables": [
+      "q",
+      "rho",
+      "V"
+    ],
+    "description": "Dynamic pressure of moving fluid. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Dynamic Pressure v02",
+    "formula": "q = 0.5*rho*V**2",
+    "variables": [
+      "q",
+      "rho",
+      "V"
+    ],
+    "description": "Dynamic pressure of moving fluid. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Dynamic Pressure v03",
+    "formula": "q = 0.5*rho*V**2",
+    "variables": [
+      "q",
+      "rho",
+      "V"
+    ],
+    "description": "Dynamic pressure of moving fluid. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Dynamic Pressure v04",
+    "formula": "q = 0.5*rho*V**2",
+    "variables": [
+      "q",
+      "rho",
+      "V"
+    ],
+    "description": "Dynamic pressure of moving fluid. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Dynamic Pressure v05",
+    "formula": "q = 0.5*rho*V**2",
+    "variables": [
+      "q",
+      "rho",
+      "V"
+    ],
+    "description": "Dynamic pressure of moving fluid. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Reynolds v01",
+    "formula": "Re = rho*V*D/mu",
+    "variables": [
+      "Re",
+      "rho",
+      "V",
+      "D",
+      "mu"
+    ],
+    "description": "Flow regime classification number. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Reynolds v02",
+    "formula": "Re = rho*V*D/mu",
+    "variables": [
+      "Re",
+      "rho",
+      "V",
+      "D",
+      "mu"
+    ],
+    "description": "Flow regime classification number. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Reynolds v03",
+    "formula": "Re = rho*V*D/mu",
+    "variables": [
+      "Re",
+      "rho",
+      "V",
+      "D",
+      "mu"
+    ],
+    "description": "Flow regime classification number. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Reynolds v04",
+    "formula": "Re = rho*V*D/mu",
+    "variables": [
+      "Re",
+      "rho",
+      "V",
+      "D",
+      "mu"
+    ],
+    "description": "Flow regime classification number. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Reynolds v05",
+    "formula": "Re = rho*V*D/mu",
+    "variables": [
+      "Re",
+      "rho",
+      "V",
+      "D",
+      "mu"
+    ],
+    "description": "Flow regime classification number. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Darcy Pressure Drop v01",
+    "formula": "dP = f*(L/D)*(rho*V**2/2)",
+    "variables": [
+      "dP",
+      "f",
+      "L",
+      "D",
+      "rho",
+      "V"
+    ],
+    "description": "Pipe friction pressure loss. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Darcy Pressure Drop v02",
+    "formula": "dP = f*(L/D)*(rho*V**2/2)",
+    "variables": [
+      "dP",
+      "f",
+      "L",
+      "D",
+      "rho",
+      "V"
+    ],
+    "description": "Pipe friction pressure loss. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Darcy Pressure Drop v03",
+    "formula": "dP = f*(L/D)*(rho*V**2/2)",
+    "variables": [
+      "dP",
+      "f",
+      "L",
+      "D",
+      "rho",
+      "V"
+    ],
+    "description": "Pipe friction pressure loss. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Darcy Pressure Drop v04",
+    "formula": "dP = f*(L/D)*(rho*V**2/2)",
+    "variables": [
+      "dP",
+      "f",
+      "L",
+      "D",
+      "rho",
+      "V"
+    ],
+    "description": "Pipe friction pressure loss. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Darcy Pressure Drop v05",
+    "formula": "dP = f*(L/D)*(rho*V**2/2)",
+    "variables": [
+      "dP",
+      "f",
+      "L",
+      "D",
+      "rho",
+      "V"
+    ],
+    "description": "Pipe friction pressure loss. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Volumetric Flow v01",
+    "formula": "Q = A*V",
+    "variables": [
+      "Q",
+      "A",
+      "V"
+    ],
+    "description": "Volumetric flow definition. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Volumetric Flow v02",
+    "formula": "Q = A*V",
+    "variables": [
+      "Q",
+      "A",
+      "V"
+    ],
+    "description": "Volumetric flow definition. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Volumetric Flow v03",
+    "formula": "Q = A*V",
+    "variables": [
+      "Q",
+      "A",
+      "V"
+    ],
+    "description": "Volumetric flow definition. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Volumetric Flow v04",
+    "formula": "Q = A*V",
+    "variables": [
+      "Q",
+      "A",
+      "V"
+    ],
+    "description": "Volumetric flow definition. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Volumetric Flow v05",
+    "formula": "Q = A*V",
+    "variables": [
+      "Q",
+      "A",
+      "V"
+    ],
+    "description": "Volumetric flow definition. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Hydrostatic v01",
+    "formula": "P = rho*g*h",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "h"
+    ],
+    "description": "Pressure in static fluid column. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Hydrostatic v02",
+    "formula": "P = rho*g*h",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "h"
+    ],
+    "description": "Pressure in static fluid column. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Hydrostatic v03",
+    "formula": "P = rho*g*h",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "h"
+    ],
+    "description": "Pressure in static fluid column. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Hydrostatic v04",
+    "formula": "P = rho*g*h",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "h"
+    ],
+    "description": "Pressure in static fluid column. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Hydrostatic v05",
+    "formula": "P = rho*g*h",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "h"
+    ],
+    "description": "Pressure in static fluid column. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Drag Force v01",
+    "formula": "Fd = 0.5*Cd*rho*A*V**2",
+    "variables": [
+      "Fd",
+      "Cd",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic drag force. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Drag Force v02",
+    "formula": "Fd = 0.5*Cd*rho*A*V**2",
+    "variables": [
+      "Fd",
+      "Cd",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic drag force. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Drag Force v03",
+    "formula": "Fd = 0.5*Cd*rho*A*V**2",
+    "variables": [
+      "Fd",
+      "Cd",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic drag force. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Drag Force v04",
+    "formula": "Fd = 0.5*Cd*rho*A*V**2",
+    "variables": [
+      "Fd",
+      "Cd",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic drag force. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Drag Force v05",
+    "formula": "Fd = 0.5*Cd*rho*A*V**2",
+    "variables": [
+      "Fd",
+      "Cd",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic drag force. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Lift Force v01",
+    "formula": "Fl = 0.5*Cl*rho*A*V**2",
+    "variables": [
+      "Fl",
+      "Cl",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic lift force. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Lift Force v02",
+    "formula": "Fl = 0.5*Cl*rho*A*V**2",
+    "variables": [
+      "Fl",
+      "Cl",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic lift force. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Lift Force v03",
+    "formula": "Fl = 0.5*Cl*rho*A*V**2",
+    "variables": [
+      "Fl",
+      "Cl",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic lift force. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Lift Force v04",
+    "formula": "Fl = 0.5*Cl*rho*A*V**2",
+    "variables": [
+      "Fl",
+      "Cl",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic lift force. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Lift Force v05",
+    "formula": "Fl = 0.5*Cl*rho*A*V**2",
+    "variables": [
+      "Fl",
+      "Cl",
+      "rho",
+      "A",
+      "V"
+    ],
+    "description": "Aerodynamic lift force. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Froude v01",
+    "formula": "Fr = V/(g*L)**0.5",
+    "variables": [
+      "Fr",
+      "V",
+      "g",
+      "L"
+    ],
+    "description": "Free-surface similitude number. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Froude v02",
+    "formula": "Fr = V/(g*L)**0.5",
+    "variables": [
+      "Fr",
+      "V",
+      "g",
+      "L"
+    ],
+    "description": "Free-surface similitude number. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Froude v03",
+    "formula": "Fr = V/(g*L)**0.5",
+    "variables": [
+      "Fr",
+      "V",
+      "g",
+      "L"
+    ],
+    "description": "Free-surface similitude number. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Froude v04",
+    "formula": "Fr = V/(g*L)**0.5",
+    "variables": [
+      "Fr",
+      "V",
+      "g",
+      "L"
+    ],
+    "description": "Free-surface similitude number. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Froude v05",
+    "formula": "Fr = V/(g*L)**0.5",
+    "variables": [
+      "Fr",
+      "V",
+      "g",
+      "L"
+    ],
+    "description": "Free-surface similitude number. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Mach v01",
+    "formula": "M = V/a",
+    "variables": [
+      "M",
+      "V",
+      "a"
+    ],
+    "description": "Mach number definition. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Mach v02",
+    "formula": "M = V/a",
+    "variables": [
+      "M",
+      "V",
+      "a"
+    ],
+    "description": "Mach number definition. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Mach v03",
+    "formula": "M = V/a",
+    "variables": [
+      "M",
+      "V",
+      "a"
+    ],
+    "description": "Mach number definition. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Mach v04",
+    "formula": "M = V/a",
+    "variables": [
+      "M",
+      "V",
+      "a"
+    ],
+    "description": "Mach number definition. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Mach v05",
+    "formula": "M = V/a",
+    "variables": [
+      "M",
+      "V",
+      "a"
+    ],
+    "description": "Mach number definition. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Shear Stress v01",
+    "formula": "tau = mu*du_dy",
+    "variables": [
+      "tau",
+      "mu",
+      "du_dy"
+    ],
+    "description": "Newtonian fluid shear relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Shear Stress v02",
+    "formula": "tau = mu*du_dy",
+    "variables": [
+      "tau",
+      "mu",
+      "du_dy"
+    ],
+    "description": "Newtonian fluid shear relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Shear Stress v03",
+    "formula": "tau = mu*du_dy",
+    "variables": [
+      "tau",
+      "mu",
+      "du_dy"
+    ],
+    "description": "Newtonian fluid shear relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Shear Stress v04",
+    "formula": "tau = mu*du_dy",
+    "variables": [
+      "tau",
+      "mu",
+      "du_dy"
+    ],
+    "description": "Newtonian fluid shear relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Shear Stress v05",
+    "formula": "tau = mu*du_dy",
+    "variables": [
+      "tau",
+      "mu",
+      "du_dy"
+    ],
+    "description": "Newtonian fluid shear relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Pump Power v01",
+    "formula": "P = rho*g*Q*H/eta",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "Q",
+      "H",
+      "eta"
+    ],
+    "description": "Hydraulic pump shaft power. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Pump Power v02",
+    "formula": "P = rho*g*Q*H/eta",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "Q",
+      "H",
+      "eta"
+    ],
+    "description": "Hydraulic pump shaft power. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Pump Power v03",
+    "formula": "P = rho*g*Q*H/eta",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "Q",
+      "H",
+      "eta"
+    ],
+    "description": "Hydraulic pump shaft power. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Pump Power v04",
+    "formula": "P = rho*g*Q*H/eta",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "Q",
+      "H",
+      "eta"
+    ],
+    "description": "Hydraulic pump shaft power. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Fluid Dynamics",
+    "name": "Fluid Dynamics - Pump Power v05",
+    "formula": "P = rho*g*Q*H/eta",
+    "variables": [
+      "P",
+      "rho",
+      "g",
+      "Q",
+      "H",
+      "eta"
+    ],
+    "description": "Hydraulic pump shaft power. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Stress v01",
+    "formula": "sigma = F/A",
+    "variables": [
+      "sigma",
+      "F",
+      "A"
+    ],
+    "description": "Axial stress in member. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Stress v02",
+    "formula": "sigma = F/A",
+    "variables": [
+      "sigma",
+      "F",
+      "A"
+    ],
+    "description": "Axial stress in member. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Stress v03",
+    "formula": "sigma = F/A",
+    "variables": [
+      "sigma",
+      "F",
+      "A"
+    ],
+    "description": "Axial stress in member. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Stress v04",
+    "formula": "sigma = F/A",
+    "variables": [
+      "sigma",
+      "F",
+      "A"
+    ],
+    "description": "Axial stress in member. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Stress v05",
+    "formula": "sigma = F/A",
+    "variables": [
+      "sigma",
+      "F",
+      "A"
+    ],
+    "description": "Axial stress in member. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Strain v01",
+    "formula": "epsilon = dL/L",
+    "variables": [
+      "epsilon",
+      "dL",
+      "L"
+    ],
+    "description": "Axial strain definition. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Strain v02",
+    "formula": "epsilon = dL/L",
+    "variables": [
+      "epsilon",
+      "dL",
+      "L"
+    ],
+    "description": "Axial strain definition. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Strain v03",
+    "formula": "epsilon = dL/L",
+    "variables": [
+      "epsilon",
+      "dL",
+      "L"
+    ],
+    "description": "Axial strain definition. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Strain v04",
+    "formula": "epsilon = dL/L",
+    "variables": [
+      "epsilon",
+      "dL",
+      "L"
+    ],
+    "description": "Axial strain definition. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Normal Strain v05",
+    "formula": "epsilon = dL/L",
+    "variables": [
+      "epsilon",
+      "dL",
+      "L"
+    ],
+    "description": "Axial strain definition. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Young Modulus v01",
+    "formula": "E = sigma/epsilon",
+    "variables": [
+      "E",
+      "sigma",
+      "epsilon"
+    ],
+    "description": "Elastic modulus relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Young Modulus v02",
+    "formula": "E = sigma/epsilon",
+    "variables": [
+      "E",
+      "sigma",
+      "epsilon"
+    ],
+    "description": "Elastic modulus relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Young Modulus v03",
+    "formula": "E = sigma/epsilon",
+    "variables": [
+      "E",
+      "sigma",
+      "epsilon"
+    ],
+    "description": "Elastic modulus relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Young Modulus v04",
+    "formula": "E = sigma/epsilon",
+    "variables": [
+      "E",
+      "sigma",
+      "epsilon"
+    ],
+    "description": "Elastic modulus relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Young Modulus v05",
+    "formula": "E = sigma/epsilon",
+    "variables": [
+      "E",
+      "sigma",
+      "epsilon"
+    ],
+    "description": "Elastic modulus relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Stress v01",
+    "formula": "tau = V/A",
+    "variables": [
+      "tau",
+      "V",
+      "A"
+    ],
+    "description": "Average shear stress. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Stress v02",
+    "formula": "tau = V/A",
+    "variables": [
+      "tau",
+      "V",
+      "A"
+    ],
+    "description": "Average shear stress. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Stress v03",
+    "formula": "tau = V/A",
+    "variables": [
+      "tau",
+      "V",
+      "A"
+    ],
+    "description": "Average shear stress. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Stress v04",
+    "formula": "tau = V/A",
+    "variables": [
+      "tau",
+      "V",
+      "A"
+    ],
+    "description": "Average shear stress. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Stress v05",
+    "formula": "tau = V/A",
+    "variables": [
+      "tau",
+      "V",
+      "A"
+    ],
+    "description": "Average shear stress. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Strain v01",
+    "formula": "gamma = dx/h",
+    "variables": [
+      "gamma",
+      "dx",
+      "h"
+    ],
+    "description": "Shear deformation ratio. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Strain v02",
+    "formula": "gamma = dx/h",
+    "variables": [
+      "gamma",
+      "dx",
+      "h"
+    ],
+    "description": "Shear deformation ratio. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Strain v03",
+    "formula": "gamma = dx/h",
+    "variables": [
+      "gamma",
+      "dx",
+      "h"
+    ],
+    "description": "Shear deformation ratio. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Strain v04",
+    "formula": "gamma = dx/h",
+    "variables": [
+      "gamma",
+      "dx",
+      "h"
+    ],
+    "description": "Shear deformation ratio. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Strain v05",
+    "formula": "gamma = dx/h",
+    "variables": [
+      "gamma",
+      "dx",
+      "h"
+    ],
+    "description": "Shear deformation ratio. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Modulus v01",
+    "formula": "G = tau/gamma",
+    "variables": [
+      "G",
+      "tau",
+      "gamma"
+    ],
+    "description": "Rigidity modulus relation. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Modulus v02",
+    "formula": "G = tau/gamma",
+    "variables": [
+      "G",
+      "tau",
+      "gamma"
+    ],
+    "description": "Rigidity modulus relation. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Modulus v03",
+    "formula": "G = tau/gamma",
+    "variables": [
+      "G",
+      "tau",
+      "gamma"
+    ],
+    "description": "Rigidity modulus relation. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Modulus v04",
+    "formula": "G = tau/gamma",
+    "variables": [
+      "G",
+      "tau",
+      "gamma"
+    ],
+    "description": "Rigidity modulus relation. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Shear Modulus v05",
+    "formula": "G = tau/gamma",
+    "variables": [
+      "G",
+      "tau",
+      "gamma"
+    ],
+    "description": "Rigidity modulus relation. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Bulk Modulus v01",
+    "formula": "K = dP/(dV/V)",
+    "variables": [
+      "K",
+      "dP",
+      "dV",
+      "V"
+    ],
+    "description": "Bulk stiffness of material. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Bulk Modulus v02",
+    "formula": "K = dP/(dV/V)",
+    "variables": [
+      "K",
+      "dP",
+      "dV",
+      "V"
+    ],
+    "description": "Bulk stiffness of material. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Bulk Modulus v03",
+    "formula": "K = dP/(dV/V)",
+    "variables": [
+      "K",
+      "dP",
+      "dV",
+      "V"
+    ],
+    "description": "Bulk stiffness of material. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Bulk Modulus v04",
+    "formula": "K = dP/(dV/V)",
+    "variables": [
+      "K",
+      "dP",
+      "dV",
+      "V"
+    ],
+    "description": "Bulk stiffness of material. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Bulk Modulus v05",
+    "formula": "K = dP/(dV/V)",
+    "variables": [
+      "K",
+      "dP",
+      "dV",
+      "V"
+    ],
+    "description": "Bulk stiffness of material. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Poisson v01",
+    "formula": "nu = -epsilon_t/epsilon_l",
+    "variables": [
+      "nu",
+      "epsilon_t",
+      "epsilon_l"
+    ],
+    "description": "Transverse-longitudinal strain ratio. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Poisson v02",
+    "formula": "nu = -epsilon_t/epsilon_l",
+    "variables": [
+      "nu",
+      "epsilon_t",
+      "epsilon_l"
+    ],
+    "description": "Transverse-longitudinal strain ratio. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Poisson v03",
+    "formula": "nu = -epsilon_t/epsilon_l",
+    "variables": [
+      "nu",
+      "epsilon_t",
+      "epsilon_l"
+    ],
+    "description": "Transverse-longitudinal strain ratio. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Poisson v04",
+    "formula": "nu = -epsilon_t/epsilon_l",
+    "variables": [
+      "nu",
+      "epsilon_t",
+      "epsilon_l"
+    ],
+    "description": "Transverse-longitudinal strain ratio. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Poisson v05",
+    "formula": "nu = -epsilon_t/epsilon_l",
+    "variables": [
+      "nu",
+      "epsilon_t",
+      "epsilon_l"
+    ],
+    "description": "Transverse-longitudinal strain ratio. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Strain v01",
+    "formula": "epsilon = alpha*dT",
+    "variables": [
+      "epsilon",
+      "alpha",
+      "dT"
+    ],
+    "description": "Free thermal expansion strain. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Strain v02",
+    "formula": "epsilon = alpha*dT",
+    "variables": [
+      "epsilon",
+      "alpha",
+      "dT"
+    ],
+    "description": "Free thermal expansion strain. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Strain v03",
+    "formula": "epsilon = alpha*dT",
+    "variables": [
+      "epsilon",
+      "alpha",
+      "dT"
+    ],
+    "description": "Free thermal expansion strain. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Strain v04",
+    "formula": "epsilon = alpha*dT",
+    "variables": [
+      "epsilon",
+      "alpha",
+      "dT"
+    ],
+    "description": "Free thermal expansion strain. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Strain v05",
+    "formula": "epsilon = alpha*dT",
+    "variables": [
+      "epsilon",
+      "alpha",
+      "dT"
+    ],
+    "description": "Free thermal expansion strain. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Stress v01",
+    "formula": "sigma = E*alpha*dT",
+    "variables": [
+      "sigma",
+      "E",
+      "alpha",
+      "dT"
+    ],
+    "description": "Fully constrained thermal stress. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Stress v02",
+    "formula": "sigma = E*alpha*dT",
+    "variables": [
+      "sigma",
+      "E",
+      "alpha",
+      "dT"
+    ],
+    "description": "Fully constrained thermal stress. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Stress v03",
+    "formula": "sigma = E*alpha*dT",
+    "variables": [
+      "sigma",
+      "E",
+      "alpha",
+      "dT"
+    ],
+    "description": "Fully constrained thermal stress. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Stress v04",
+    "formula": "sigma = E*alpha*dT",
+    "variables": [
+      "sigma",
+      "E",
+      "alpha",
+      "dT"
+    ],
+    "description": "Fully constrained thermal stress. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Thermal Stress v05",
+    "formula": "sigma = E*alpha*dT",
+    "variables": [
+      "sigma",
+      "E",
+      "alpha",
+      "dT"
+    ],
+    "description": "Fully constrained thermal stress. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fracture Toughness v01",
+    "formula": "KIC = Y*sigma*(pi*a)**0.5",
+    "variables": [
+      "KIC",
+      "Y",
+      "sigma",
+      "a"
+    ],
+    "description": "Mode I fracture criterion. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fracture Toughness v02",
+    "formula": "KIC = Y*sigma*(pi*a)**0.5",
+    "variables": [
+      "KIC",
+      "Y",
+      "sigma",
+      "a"
+    ],
+    "description": "Mode I fracture criterion. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fracture Toughness v03",
+    "formula": "KIC = Y*sigma*(pi*a)**0.5",
+    "variables": [
+      "KIC",
+      "Y",
+      "sigma",
+      "a"
+    ],
+    "description": "Mode I fracture criterion. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fracture Toughness v04",
+    "formula": "KIC = Y*sigma*(pi*a)**0.5",
+    "variables": [
+      "KIC",
+      "Y",
+      "sigma",
+      "a"
+    ],
+    "description": "Mode I fracture criterion. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fracture Toughness v05",
+    "formula": "KIC = Y*sigma*(pi*a)**0.5",
+    "variables": [
+      "KIC",
+      "Y",
+      "sigma",
+      "a"
+    ],
+    "description": "Mode I fracture criterion. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fatigue Basquin v01",
+    "formula": "sigma_a = sigma_f*(2*N)**b",
+    "variables": [
+      "sigma_a",
+      "sigma_f",
+      "N",
+      "b"
+    ],
+    "description": "High-cycle fatigue model. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fatigue Basquin v02",
+    "formula": "sigma_a = sigma_f*(2*N)**b",
+    "variables": [
+      "sigma_a",
+      "sigma_f",
+      "N",
+      "b"
+    ],
+    "description": "High-cycle fatigue model. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fatigue Basquin v03",
+    "formula": "sigma_a = sigma_f*(2*N)**b",
+    "variables": [
+      "sigma_a",
+      "sigma_f",
+      "N",
+      "b"
+    ],
+    "description": "High-cycle fatigue model. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fatigue Basquin v04",
+    "formula": "sigma_a = sigma_f*(2*N)**b",
+    "variables": [
+      "sigma_a",
+      "sigma_f",
+      "N",
+      "b"
+    ],
+    "description": "High-cycle fatigue model. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Fatigue Basquin v05",
+    "formula": "sigma_a = sigma_f*(2*N)**b",
+    "variables": [
+      "sigma_a",
+      "sigma_f",
+      "N",
+      "b"
+    ],
+    "description": "High-cycle fatigue model. Variant 5 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Creep Rate v01",
+    "formula": "epsdot = A*sigma**n*exp_term",
+    "variables": [
+      "epsdot",
+      "A",
+      "sigma",
+      "n",
+      "exp_term"
+    ],
+    "description": "Steady-state creep power law form. Variant 1 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Creep Rate v02",
+    "formula": "epsdot = A*sigma**n*exp_term",
+    "variables": [
+      "epsdot",
+      "A",
+      "sigma",
+      "n",
+      "exp_term"
+    ],
+    "description": "Steady-state creep power law form. Variant 2 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Creep Rate v03",
+    "formula": "epsdot = A*sigma**n*exp_term",
+    "variables": [
+      "epsdot",
+      "A",
+      "sigma",
+      "n",
+      "exp_term"
+    ],
+    "description": "Steady-state creep power law form. Variant 3 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Creep Rate v04",
+    "formula": "epsdot = A*sigma**n*exp_term",
+    "variables": [
+      "epsdot",
+      "A",
+      "sigma",
+      "n",
+      "exp_term"
+    ],
+    "description": "Steady-state creep power law form. Variant 4 for engineering scenario library."
+  },
+  {
+    "category": "Materials",
+    "name": "Materials - Creep Rate v05",
+    "formula": "epsdot = A*sigma**n*exp_term",
+    "variables": [
+      "epsdot",
+      "A",
+      "sigma",
+      "n",
+      "exp_term"
+    ],
+    "description": "Steady-state creep power law form. Variant 5 for engineering scenario library."
+  }
+]
