@@ -7,6 +7,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const EQUATIONS_PATH = path.join(__dirname, '..', 'data', 'equations.json');
 const EPSILON = 1e-9;
+const DEG_TO_RAD = Math.PI / 180;
+const RAD_TO_DEG = 180 / Math.PI;
+const MATH_NAMESPACE = {
+  ...Math,
+  pi: Math.PI,
+  e: Math.E,
+  radians: (degrees) => Number(degrees) * DEG_TO_RAD,
+  degrees: (radians) => Number(radians) * RAD_TO_DEG,
+};
 
 function loadEquations(equationsPath = EQUATIONS_PATH) {
   const raw = fs.readFileSync(equationsPath, 'utf-8');
@@ -25,6 +34,10 @@ function splitFormula(formula) {
   };
 }
 
+function normalizeFormula(formula) {
+  return String(formula).replace(/\bmath\./g, '');
+}
+
 function validateInputs(equation, solveFor, variables) {
   if (!equation.variables.includes(solveFor)) {
     throw new Error(`Variable '${solveFor}' is not defined in equation '${equation.name}'.`);
@@ -41,7 +54,7 @@ function validateInputs(equation, solveFor, variables) {
 }
 
 function createResidualFunction(formula, solveFor, variables) {
-  const { left, right } = splitFormula(formula);
+  const { left, right } = splitFormula(normalizeFormula(formula));
   const leftExpr = compile(left);
   const rightExpr = compile(right);
 
@@ -49,9 +62,23 @@ function createResidualFunction(formula, solveFor, variables) {
     const scope = {
       ...variables,
       [solveFor]: candidate,
-      pi: Math.PI,
-      e: Math.E,
     };
+
+    if (scope.pi === undefined) {
+      scope.pi = Math.PI;
+    }
+
+    if (scope.e === undefined) {
+      scope.e = Math.E;
+    }
+
+    if (scope.radians === undefined) {
+      scope.radians = MATH_NAMESPACE.radians;
+    }
+
+    if (scope.degrees === undefined) {
+      scope.degrees = MATH_NAMESPACE.degrees;
+    }
 
     const leftValue = Number(leftExpr.evaluate(scope));
     const rightValue = Number(rightExpr.evaluate(scope));
@@ -181,12 +208,37 @@ function newtonSolve(fn, initialGuess = 1, maxIterations = 60) {
   return null;
 }
 
-function getEquationByIdentifier(equations, identifier) {
+function hasAllRequiredVariables(equation, solveFor, variables) {
+  const required = equation.variables.filter((variable) => variable !== solveFor);
+  return required.every((variable) => variables[variable] !== undefined && variables[variable] !== null);
+}
+
+function getEquationByIdentifier(equations, identifier, solveFor, variables = {}) {
   if (!identifier) {
     return null;
   }
 
-  return equations.find((eq) => eq.name === identifier || eq.formula === identifier) || null;
+  const matches = equations.filter((eq) => eq.name === identifier || eq.formula === identifier);
+  if (matches.length === 0) {
+    return null;
+  }
+
+  if (solveFor) {
+    const compatible = matches.filter((equation) => equation.variables.includes(solveFor));
+    const complete = compatible.find((equation) =>
+      hasAllRequiredVariables(equation, solveFor, variables)
+    );
+
+    if (complete) {
+      return complete;
+    }
+
+    if (compatible.length > 0) {
+      return compatible[0];
+    }
+  }
+
+  return matches[0];
 }
 
 export function listEquations(category) {
@@ -199,7 +251,7 @@ export function listEquations(category) {
 
 export function solveEquation({ equation: equationIdentifier, variables = {}, solveFor }) {
   const equations = loadEquations();
-  const equation = getEquationByIdentifier(equations, equationIdentifier);
+  const equation = getEquationByIdentifier(equations, equationIdentifier, solveFor, variables);
 
   if (!equation) {
     throw new Error(`Unknown equation: ${equationIdentifier}`);
