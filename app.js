@@ -52,10 +52,26 @@ function showResult(data) {
   const hero = document.createElement("div");
   hero.className = "result-hero";
   hero.innerHTML = `
-    <span class="result-var">${escHtml(data.solveFor)}</span>
-    <span class="result-eq">=</span>
-    <span class="result-val">${escHtml(String(data.result))}</span>
+    <div class="result-val-wrap">
+      <span class="result-var">${escHtml(data.solveFor)}</span>
+      <span class="result-eq">=</span>
+      <span class="result-val">${escHtml(String(data.result))}</span>
+    </div>
+    <button class="copy-btn" title="Copy result">Copy</button>
   `;
+
+  const copyBtn = hero.querySelector(".copy-btn");
+  if(copyBtn) {
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(String(data.result)).then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => copyBtn.textContent = "Copy", 2000);
+      }).catch(() => {
+        copyBtn.textContent = "Err";
+        setTimeout(() => copyBtn.textContent = "Copy", 2000);
+      });
+    });
+  }
 
   const meta = document.createElement("div");
   meta.className = "result-meta";
@@ -118,7 +134,15 @@ function renderEquationDetails(equationName) {
     return;
   }
 
-  formulaDisplay.textContent = eq.formula;
+  if (typeof katex !== 'undefined') {
+    try {
+      katex.render(eq.formula, formulaDisplay, { throwOnError: false });
+    } catch(e) {
+      formulaDisplay.textContent = eq.formula;
+    }
+  } else {
+    formulaDisplay.textContent = eq.formula;
+  }
 
   solveForSelect.innerHTML = eq.variables
     .map(v => `<option value="${escHtml(v)}">${escHtml(v)}</option>`)
@@ -140,7 +164,7 @@ function renderVariableInputs(eq, solveFor) {
         id="var_${escHtml(v)}"
         type="number"
         step="any"
-        placeholder="${(i + 2) * 5}"
+        placeholder="Enter ${escHtml(v)}..."
         data-var="${escHtml(v)}"
       />
       <span class="hint">numeric value</span>
