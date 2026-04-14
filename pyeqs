@@ -1,0 +1,2519 @@
+import math
+import cmath
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import optimize, integrate, special
+from scipy.linalg import expm
+import sympy as sp
+import warnings
+warnings.filterwarnings('ignore')
+
+# Enhanced Physical constants with more precision
+c = 299792458  # speed of light (m/s)
+h = 6.62607015e-34  # Planck constant (J⋅s)
+hbar = h / (2 * math.pi)  # reduced Planck constant
+k_B = 1.380649e-23  # Boltzmann constant (J/K)
+N_A = 6.02214076e23  # Avogadro's number
+G = 6.67430e-11  # gravitational constant (m³⋅kg⁻¹⋅s⁻²)
+e = 1.602176634e-19  # elementary charge (C)
+m_e = 9.1093837015e-31  # electron mass (kg)
+m_p = 1.67262192369e-27  # proton mass (kg)
+m_n = 1.67492749804e-27  # neutron mass (kg)
+epsilon_0 = 8.8541878128e-12  # vacuum permittivity (F/m)
+mu_0 = 4 * math.pi * 1e-7  # vacuum permeability (H/m)
+R = 8.314462618  # gas constant (J⋅mol⁻¹⋅K⁻¹)
+sigma_sb = 5.670374419e-8  # Stefan-Boltzmann constant (W⋅m⁻²⋅K⁻⁴)
+alpha_fs = 7.2973525693e-3  # fine structure constant
+a_0 = 5.29177210903e-11  # Bohr radius (m)
+mu_B = 9.2740100783e-24  # Bohr magneton (J/T)
+mu_N = 5.0507837461e-27  # nuclear magneton (J/T)
+
+# ==================== QUANTUM MECHANICS ====================
+
+
+
+def schrodinger_infinite_well(n, L, mass=m_e):
+    """Energy levels in infinite square well"""
+    if n <= 0 or L <= 0:
+        return "Error: n must be positive, L must be positive"
+    
+    E_n = (n**2 * math.pi**2 * hbar**2) / (2 * mass * L**2)
+    k_n = n * math.pi / L
+    
+    return f"E_{n} = {E_n:.3e} J = {E_n/e:.6f} eV, k_{n} = {k_n:.3e} m⁻¹"
+
+
+
+def quantum_harmonic_oscillator(n, omega, mass=m_e):
+    """Quantum harmonic oscillator energy levels"""
+    if n < 0:
+        return "Error: n must be non-negative integer"
+    
+    E_n = hbar * omega * (n + 0.5)
+    x_rms = math.sqrt(hbar / (2 * mass * omega))
+    
+    return f"E_{n} = {E_n:.3e} J = {E_n/e:.6f} eV, x_rms = {x_rms:.3e} m"
+
+
+
+def hydrogen_atom_energy(n):
+    """Hydrogen atom energy levels (Bohr model)"""
+    if n < 1:
+        return "Error: n must be positive integer"
+    
+    E_n = -13.6 / (n**2)  # in eV
+    r_n = n**2 * a_0
+    
+    return f"E_{n} = {E_n:.6f} eV, r_{n} = {r_n:.3e} m"
+
+
+
+def de_broglie_wavelength(mass, velocity):
+    """de Broglie wavelength"""
+    if mass <= 0 or velocity <= 0:
+        return "Error: Mass and velocity must be positive"
+    
+    lambda_db = h / (mass * velocity)
+    momentum = mass * velocity
+    
+    return f"λ = {lambda_db:.3e} m, p = {momentum:.3e} kg⋅m/s"
+
+
+
+def heisenberg_uncertainty(delta_x, delta_p):
+    """Heisenberg uncertainty principle"""
+    product = delta_x * delta_p
+    minimum = hbar / 2
+    
+    satisfies = "Satisfies" if product >= minimum else "Violates"
+    return f"Δx⋅Δp = {product:.3e}, minimum = {minimum:.3e}, {satisfies} uncertainty principle"
+
+
+
+def quantum_tunneling(E, V0, width, mass=m_e):
+    """Quantum tunneling transmission probability"""
+    if E >= V0:
+        return "No tunneling needed - particle has enough energy"
+    
+    try:
+        kappa = math.sqrt(2 * mass * (V0 - E)) / hbar
+        T = 1 / (1 + (V0**2 * math.sinh(kappa * width)**2) / (4 * E * (V0 - E)))
+        
+        return f"Transmission probability T = {T:.6e} ({T*100:.4f}%)"
+    except:
+        return "Error in tunneling calculation"
+
+
+
+def spin_orbital_coupling(j, l, s):
+    """Spin-orbit coupling energy"""
+    if abs(j - l) > s or j > l + s:
+        return "Error: Invalid quantum numbers"
+    
+    # Simplified spin-orbit interaction
+    if j == l + s:
+        factor = l / 2
+    elif j == abs(l - s):
+        factor = -(l + 1) / 2
+    else:
+        factor = 0
+    
+    return f"Spin-orbit factor = {factor}, j = {j}, l = {l}, s = {s}"
+
+
+
+def quantum_zeno_effect(measurement_frequency, decay_rate):
+    """Quantum Zeno effect - inhibition of decay by frequent measurements"""
+    if measurement_frequency <= 0 or decay_rate <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Effective decay rate with frequent measurements (standard QZE result)
+    gamma_eff = decay_rate**2 / measurement_frequency
+    inhibition_factor = gamma_eff / decay_rate
+    
+    return f"Effective decay rate = {gamma_eff:.3e} s⁻¹, inhibition = {inhibition_factor:.4f}"
+
+
+
+def berry_phase_calculation(path_area, magnetic_flux):
+    """Geometric Berry phase for adiabatic evolution"""
+    if path_area <= 0:
+        return "Error: Path area must be positive"
+    
+    # Berry phase for magnetic monopole
+    berry_phase = math.pi * magnetic_flux / (h / e)  # in units of flux quantum
+    
+    return f"Berry phase = {berry_phase:.6f} rad = {math.degrees(berry_phase):.2f}°"
+
+
+
+def aharonov_bohm_effect(magnetic_flux, charge=e):
+    """Aharonov-Bohm phase shift"""
+    flux_quantum = h / e
+    phase_shift = 2 * math.pi * magnetic_flux / flux_quantum
+    
+    return f"Phase shift = {phase_shift:.6f} rad, Flux/Φ₀ = {magnetic_flux/flux_quantum:.4f}"
+
+
+
+def klein_gordon_dispersion(mass, momentum):
+    """Klein-Gordon energy-momentum relation"""
+    E_squared = (mass * c**2)**2 + (momentum * c)**2
+    E = math.sqrt(E_squared)
+    
+    return f"E = {E:.3e} J = {E/(m_e*c**2):.6f} mₑc²"
+
+
+
+def dirac_spinor_energy(mass, momentum):
+    """Dirac equation energy solutions"""
+    E = math.sqrt((mass * c**2)**2 + (momentum * c)**2)
+    
+    return f"E = ±{E:.3e} J (particle and antiparticle solutions)"
+
+
+
+def casimir_force_parallel_plates(area, separation):
+    """Casimir force between parallel conducting plates"""
+    if separation <= 0 or area <= 0:
+        return "Error: Area and separation must be positive"
+    
+    force = -(math.pi**2 * hbar * c * area) / (240 * separation**4)
+    pressure = force / area
+    
+    return f"Casimir force = {force:.3e} N, pressure = {pressure:.3e} Pa"
+
+
+
+def lamb_shift_hydrogen_2s():
+    """Lamb shift for 2S₁/₂ - 2P₁/₂ in hydrogen"""
+    # Experimental value for hydrogen 2S₁/₂ - 2P₁/₂
+    shift_mhz = 1057.8  # MHz
+    shift_joules = shift_mhz * 1e6 * h
+    
+    return f"Lamb shift = {shift_mhz} MHz = {shift_joules:.3e} J = {shift_joules/e:.6f} eV"
+
+
+
+def qed_vertex_correction():
+    """QED vertex correction to electron magnetic moment"""
+    # First-order QED correction
+    alpha = alpha_fs
+    correction = alpha / (2 * math.pi)
+    
+    g_factor = 2 * (1 + correction)
+    anomaly = g_factor - 2
+    
+    return f"g-factor = {g_factor:.8f}, anomalous moment = {anomaly:.3e}"
+
+
+
+def vacuum_polarization_correction(distance):
+    """Vacuum polarization correction to Coulomb potential"""
+    if distance <= 0:
+        return "Error: Distance must be positive"
+    
+    # Leading correction at distance r
+    alpha = alpha_fs
+    correction = (2 * alpha) / (3 * math.pi) * math.log(1 / (distance * m_e * c / hbar))
+    
+    return f"Vacuum polarization correction = {correction:.6f} at r = {distance:.3e} m"
+
+
+
+def schwinger_pair_production_threshold():
+    """Critical field for Schwinger pair production"""
+    E_crit = (m_e * c)**2 / (e * hbar)  # Critical electric field
+    B_crit = E_crit / c  # Equivalent magnetic field
+    
+    return f"Critical E-field = {E_crit:.3e} V/m, Critical B-field = {B_crit:.3e} T"
+
+
+
+def feynman_diagram_propagator(mass, momentum_squared):
+    """Feynman propagator for scalar particle"""
+    if mass <= 0:
+        return "Error: Mass must be positive"
+    
+    # Scalar propagator in momentum space
+    denominator = momentum_squared - (mass * c)**2
+    
+    if abs(denominator) < 1e-10:
+        return "On-shell condition: p² = m²c²"
+    
+    propagator = 1 / denominator
+    return f"Scalar propagator = {propagator:.3e} (GeV)⁻²"
+
+
+
+def schwarzschild_metric_components(mass, radius):
+    """Schwarzschild metric components"""
+    if radius <= 0 or mass <= 0:
+        return "Error: Parameters must be positive"
+    
+    rs = 2 * G * mass / c**2  # Schwarzschild radius
+    
+    if radius <= rs:
+        return f"Inside event horizon! r = {radius:.3e} m < rs = {rs:.3e} m"
+    
+    g_tt = -(1 - rs/radius)
+    g_rr = 1 / (1 - rs/radius)
+    
+    return f"g_tt = {g_tt:.6f}, g_rr = {g_rr:.6f}, rs = {rs:.3e} m"
+
+
+
+def gravitational_wave_strain(mass1, mass2, distance, frequency):
+    """Gravitational wave strain amplitude"""
+    if any(x <= 0 for x in [mass1, mass2, distance, frequency]):
+        return "Error: All parameters must be positive"
+    
+    # Approximate strain for circular binary
+    chirp_mass = ((mass1 * mass2)**(3/5)) / ((mass1 + mass2)**(1/5))
+    omega = 2 * math.pi * frequency
+    
+    h_0 = (4/distance) * (G * chirp_mass / c**2) * (G * chirp_mass * omega / c**3)**(2/3)
+    
+    return f"Strain amplitude h₀ ≈ {h_0:.3e}, chirp mass = {chirp_mass:.3e} kg"
+
+
+
+def cosmological_redshift(scale_factor_then, scale_factor_now=1.0):
+    """Cosmological redshift from scale factor"""
+    if scale_factor_then <= 0:
+        return "Error: Scale factor must be positive"
+    
+    redshift = (scale_factor_now / scale_factor_then) - 1
+    
+    return f"Redshift z = {redshift:.6f}, scale factor ratio = {scale_factor_now/scale_factor_then:.6f}"
+
+
+
+def hubble_parameter_evolution(omega_m, omega_lambda, redshift):
+    """Hubble parameter as function of redshift"""
+    if omega_m < 0 or omega_lambda < 0:
+        return "Error: Density parameters must be positive"
+    
+    # Friedmann equation solution
+    H_H0_squared = omega_m * (1 + redshift)**3 + omega_lambda
+    H_ratio = math.sqrt(H_H0_squared)
+    
+    return f"H(z)/H₀ = {H_ratio:.6f} at z = {redshift:.3f}"
+
+
+
+def geodesic_deviation_equation(curvature, separation):
+    """Geodesic deviation (tidal effects)"""
+    if curvature == 0:
+        return "No tidal effects in flat spacetime"
+    
+    # Simplified tidal acceleration
+    tidal_accel = curvature * separation
+    
+    return f"Tidal acceleration = {tidal_accel:.3e} m/s²"
+
+
+
+def black_hole_temperature(mass):
+    """Hawking temperature of black hole"""
+    if mass <= 0:
+        return "Error: Mass must be positive"
+    
+    temp = hbar * c**3 / (8 * math.pi * k_B * G * mass)
+    rs = 2 * G * mass / c**2
+    
+    return f"Hawking temperature = {temp:.3e} K, rs = {rs:.3e} m"
+
+
+
+def wormhole_throat_radius(mass):
+    """Minimum radius for traversable wormhole"""
+    if mass <= 0:
+        return "Error: Mass must be positive"
+    
+    # Approximate throat radius
+    r_throat = 2 * G * mass / c**2  # Similar to Schwarzschild radius
+    
+    return f"Throat radius ≈ {r_throat:.3e} m"
+
+
+
+def penrose_process_energy_extraction(mass, angular_momentum):
+    """Maximum energy extraction from rotating black hole"""
+    if mass <= 0:
+        return "Error: Mass must be positive"
+    
+    # Maximum spin parameter a = J/(Mc)
+    a_max = angular_momentum / (mass * c)
+    
+    if a_max > 1:
+        return "Error: Exceeds maximum spin for black hole"
+    
+    # Maximum extractable energy (Penrose process)
+    max_extraction = 1 - math.sqrt((1 + math.sqrt(1 - a_max**2)) / 2)
+    
+    return f"Max energy extraction = {max_extraction*100:.2f}% of rest mass"
+
+
+
+def maxwell_stress_tensor(E_field, B_field):
+    """Maxwell stress tensor components"""
+    # Simplified: assume fields perpendicular
+    energy_density = 0.5 * (epsilon_0 * E_field**2 + B_field**2 / mu_0)
+    pressure = energy_density  # For electromagnetic radiation
+    
+    return f"Energy density = {energy_density:.3e} J/m³, radiation pressure = {pressure:.3e} Pa"
+
+
+
+def electromagnetic_wave_impedance():
+    """Impedance of free space for EM waves"""
+    Z_0 = math.sqrt(mu_0 / epsilon_0)
+    
+    return f"Free space impedance Z₀ = {Z_0:.1f} Ω"
+
+
+
+def cyclotron_resonance(charge, mass, B_field):
+    """Cyclotron resonance frequency"""
+    if mass <= 0 or B_field == 0:
+        return "Error: Invalid parameters"
+    
+    omega_c = abs(charge * B_field) / mass
+    freq_c = omega_c / (2 * math.pi)
+    
+    return f"Cyclotron frequency = {freq_c:.3e} Hz, ω_c = {omega_c:.3e} rad/s"
+
+
+
+def synchrotron_radiation_power(charge, mass, acceleration, beta):
+    """Power radiated by relativistic accelerating charge"""
+    if mass <= 0 or beta >= 1:
+        return "Error: Invalid parameters"
+    
+    gamma = 1 / math.sqrt(1 - beta**2)
+    
+    # Larmor formula with relativistic correction
+    P_classical = (charge**2 * acceleration**2) / (6 * math.pi * epsilon_0 * c**3)
+    P_relativistic = P_classical * gamma**6
+    
+    return f"Synchrotron power = {P_relativistic:.3e} W (γ = {gamma:.3f})"
+
+
+
+def plasma_dispersion_relation(omega, omega_p, k, v_th):
+    """Plasma wave dispersion relation"""
+    if omega_p <= 0:
+        return "Error: Plasma frequency must be positive"
+    
+    # Simplified cold plasma approximation
+    if omega < omega_p:
+        return "Evanescent wave - frequency below plasma cutoff"
+    
+    # Wave vector for electromagnetic wave in plasma
+    k_wave = (omega / c) * math.sqrt(1 - (omega_p / omega)**2)
+    
+    return f"Wave vector k = {k_wave:.3e} m⁻¹, phase velocity = {omega/k_wave/c:.6f}c"
+
+
+
+def magnetic_reconnection_rate(B_field, density, resistivity):
+    """Magnetic reconnection rate (Sweet-Parker model)"""
+    if any(x <= 0 for x in [B_field, density, resistivity]):
+        return "Error: Parameters must be positive"
+    
+    # Alfvén velocity
+    v_A = B_field / math.sqrt(mu_0 * density * m_p)  # Assuming protons
+    
+    # Sweet-Parker reconnection rate
+    S = mu_0 * v_A / resistivity  # Lundquist number (simplified)
+    reconnection_rate = v_A / math.sqrt(S)
+    
+    return f"Reconnection rate ≈ {reconnection_rate:.3e} m/s, Alfvén velocity = {v_A:.3e} m/s"
+
+
+
+def cherenkov_radiation_threshold(particle_velocity, refractive_index):
+    """Cherenkov radiation threshold and angle"""
+    if refractive_index <= 1:
+        return "Error: Refractive index must be > 1"
+    
+    threshold_velocity = c / refractive_index
+    beta = particle_velocity / c
+    beta_threshold = 1 / refractive_index
+    
+    if beta < beta_threshold:
+        return f"Below threshold: v = {particle_velocity:.3e} m/s < {threshold_velocity:.3e} m/s"
+    
+    cos_theta = 1 / (refractive_index * beta)
+    theta = math.degrees(math.acos(cos_theta))
+    
+    return f"Cherenkov angle = {theta:.2f}°, threshold velocity = {threshold_velocity:.3e} m/s"
+
+
+
+def bloch_electron_effective_mass(band_curvature):
+    """Effective mass of electrons in crystal"""
+    if band_curvature == 0:
+        return "Error: Band curvature cannot be zero"
+    
+    m_eff = hbar**2 / band_curvature
+    
+    return f"Effective mass = {m_eff:.3e} kg = {m_eff/m_e:.3f} mₑ"
+
+
+
+def cooper_pair_coherence_length(fermi_velocity, energy_gap):
+    """BCS coherence length"""
+    if fermi_velocity <= 0 or energy_gap <= 0:
+        return "Error: Parameters must be positive"
+    
+    xi = hbar * fermi_velocity / (math.pi * energy_gap)
+    
+    return f"Coherence length ξ = {xi:.3e} m"
+
+
+
+def josephson_junction_critical_current(energy_gap, resistance):
+    """Critical current in Josephson junction"""
+    if energy_gap <= 0 or resistance <= 0:
+        return "Error: Parameters must be positive"
+    
+    I_c = (math.pi * energy_gap) / (2 * e * resistance)
+    
+    return f"Critical current Ic = {I_c:.3e} A"
+
+
+
+def quantum_hall_conductivity(filling_factor):
+    """Quantum Hall conductivity"""
+    conductivity_quantum = e**2 / h
+    sigma_xy = filling_factor * conductivity_quantum
+    
+    return f"σxy = {sigma_xy:.3e} S, ν = {filling_factor}"
+
+
+
+def anderson_localization_length(disorder_strength, dimension):
+    """Localization length in disordered systems"""
+    if disorder_strength <= 0:
+        return "Error: Disorder strength must be positive"
+    
+    # Simplified estimate
+    if dimension <= 2:
+        xi = hbar / disorder_strength  # Always localized in 1D, 2D
+    else:
+        xi = (hbar / disorder_strength) * (1 / disorder_strength)  # 3D case
+    
+    return f"Localization length ξ ≈ {xi:.3e} m (d = {dimension})"
+
+
+
+def fermi_liquid_specific_heat(temperature, fermi_temperature):
+    """Fermi liquid electronic specific heat"""
+    if temperature <= 0 or fermi_temperature <= 0:
+        return "Error: Temperatures must be positive"
+    
+    # Linear in T for Fermi liquids
+    gamma = (math.pi**2 * k_B**2) / (3 * k_B * fermi_temperature)  # Sommerfeld coefficient
+    C_el = gamma * temperature
+    
+    return f"Electronic specific heat = {C_el:.3e} J/(mol⋅K), γ = {gamma:.3e}"
+
+
+
+def kondo_temperature(exchange_coupling, density_of_states):
+    """Kondo temperature for magnetic impurity"""
+    if exchange_coupling <= 0 or density_of_states <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Kondo temperature estimate
+    T_K = math.exp(-1 / (exchange_coupling * density_of_states))
+    
+    return f"Kondo temperature TK ≈ {T_K:.3e} K"
+
+
+
+def mott_insulator_gap(coulomb_repulsion, bandwidth):
+    """Mott-Hubbard insulating gap"""
+    if coulomb_repulsion <= 0 or bandwidth <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Simplified Mott criterion
+    if coulomb_repulsion > bandwidth:
+        gap = coulomb_repulsion - bandwidth
+        return f"Mott insulator with gap Δ ≈ {gap:.3e} eV"
+    else:
+        return "Metallic state: U < W (Coulomb < bandwidth)"
+
+
+
+def nuclear_binding_energy_semf(A, Z):
+    """Semi-empirical mass formula binding energy"""
+    if A <= 0 or Z < 0 or Z > A:
+        return "Error: Invalid nucleon/proton numbers"
+    
+    N = A - Z
+    
+    # SEMF coefficients (MeV)
+    a_v = 15.75  # volume
+    a_s = 17.8   # surface  
+    a_c = 0.711  # Coulomb
+    a_a = 23.7   # asymmetry
+    
+    # Pairing term
+    if N % 2 == 0 and Z % 2 == 0:
+        delta = 11.18 / math.sqrt(A)
+    elif N % 2 == 1 and Z % 2 == 1:
+        delta = -11.18 / math.sqrt(A)
+    else:
+        delta = 0
+    
+    # Total binding energy
+    BE = (a_v * A - a_s * A**(2/3) - a_c * Z**2 / A**(1/3) 
+          - a_a * (N - Z)**2 / A + delta)
+    
+    return f"BE = {BE:.1f} MeV, BE/A = {BE/A:.3f} MeV/nucleon"
+
+
+
+def radioactive_decay_chain(N0, lambda1, lambda2, time):
+    """Two-step decay chain N1 → N2 → N3"""
+    if any(x <= 0 for x in [N0, lambda1, lambda2, time]):
+        return "Error: Parameters must be positive"
+    
+    # Parent nucleus
+    N1 = N0 * math.exp(-lambda1 * time)
+    
+    # Daughter nucleus  
+    if abs(lambda1 - lambda2) > 1e-10:
+        N2 = (N0 * lambda1 / (lambda2 - lambda1)) * (math.exp(-lambda1 * time) - math.exp(-lambda2 * time))
+    else:
+        N2 = N0 * lambda1 * time * math.exp(-lambda1 * time)  # Equal decay constants
+    
+    # Granddaughter
+    N3 = N0 - N1 - N2
+    
+    return f"N1 = {N1:.3e}, N2 = {N2:.3e}, N3 = {N3:.3e} at t = {time:.2f}s"
+
+
+
+def cross_section_breit_wigner(energy, resonance_energy, width):
+    """Breit-Wigner resonance cross section"""
+    if width <= 0:
+        return "Error: Width must be positive"
+    
+    # Breit-Wigner formula
+    denominator = (energy - resonance_energy)**2 + (width/2)**2
+    sigma = (math.pi * width**2) / (4 * denominator)
+    
+    return f"Cross section = {sigma:.3e} barn at E = {energy:.3f} MeV"
+
+
+
+def nuclear_fission_fragments(A_parent, Z_parent):
+    """Typical fission fragment distribution"""
+    if A_parent < 200 or Z_parent < 80:
+        return "Error: Nucleus too light for typical fission"
+    
+    # Asymmetric fission (most probable)
+    A_light = int(A_parent * 0.4)
+    A_heavy = A_parent - A_light
+    
+    # Approximate charge distribution
+    Z_light = int(Z_parent * A_light / A_parent)
+    Z_heavy = Z_parent - Z_light
+    
+    # Energy release (typical)
+    Q_value = 200  # MeV for U-235 fission
+    
+    return f"Fragments: A_light={A_light}, Z_light={Z_light}; A_heavy={A_heavy}, Z_heavy={Z_heavy}; Q≈{Q_value} MeV"
+
+
+
+def neutron_flux_diffusion(diffusion_coeff, absorption_cross_section, source_strength):
+    """Neutron diffusion equation solution"""
+    if any(x <= 0 for x in [diffusion_coeff, absorption_cross_section]):
+        return "Error: Parameters must be positive"
+    
+    # Diffusion length
+    L_diff = math.sqrt(diffusion_coeff / absorption_cross_section)
+    
+    # Critical size for sphere
+    R_crit = math.pi * L_diff
+    
+    return f"Diffusion length = {L_diff:.3e} m, critical radius ≈ {R_crit:.3e} m"
+
+
+
+def quark_confinement_potential(separation):
+    """Linear confinement potential between quarks"""
+    if separation <= 0:
+        return "Error: Separation must be positive"
+    
+    # String tension (approximate)
+    sigma = 1.0  # GeV/fm
+    
+    # Linear potential
+    V_conf = sigma * separation * 1e15  # Convert to GeV
+    
+    return f"Confinement potential ≈ {V_conf:.3f} GeV at r = {separation:.3e} m"
+
+
+
+def standard_model_running_coupling(energy, coupling_const, beta_coefficient):
+    """Running of coupling constants in Standard Model"""
+    if energy <= 0:
+        return "Error: Energy must be positive"
+    
+    # One-loop beta function
+    energy_ref = 91.2  # GeV (Z boson mass)
+    log_ratio = math.log(energy / energy_ref)
+    
+    alpha_running = coupling_const / (1 + beta_coefficient * coupling_const * log_ratio / (2 * math.pi))
+    
+    return f"α({energy:.1f} GeV) = {alpha_running:.6f}, β₀ = {beta_coefficient}"
+
+
+
+def partition_function_ising_1d(N, coupling, temperature):
+    """1D Ising model partition function"""
+    if N <= 0 or temperature <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Transfer matrix eigenvalues
+    lambda_1 = math.exp(coupling / (k_B * temperature)) + math.exp(-coupling / (k_B * temperature))
+    lambda_2 = math.exp(coupling / (k_B * temperature)) - math.exp(-coupling / (k_B * temperature))
+    
+    # Partition function
+    Z = lambda_1**N + lambda_2**N
+    
+    # Free energy per spin
+    f = -(k_B * temperature / N) * math.log(Z)
+    
+    return f"Z = {Z:.3e}, free energy per spin = {f:.3e} J"
+
+
+
+def critical_exponents_ising_2d():
+    """Exact critical exponents for 2D Ising model"""
+    alpha = 0  # specific heat
+    beta = 1/8  # magnetization
+    gamma = 7/4  # susceptibility
+    delta = 15  # critical isotherm
+    nu = 1  # correlation length
+    eta = 1/4  # correlation function
+    
+    return f"α={alpha}, β={beta}, γ={gamma}, δ={delta}, ν={nu}, η={eta}"
+
+
+
+def landau_theory_phase_transition(temperature, critical_temp, order_parameter):
+    """Landau theory of phase transitions"""
+    if critical_temp <= 0:
+        return "Error: Critical temperature must be positive"
+    
+    reduced_temp = (temperature - critical_temp) / critical_temp
+    
+    if temperature > critical_temp:
+        # Disordered phase
+        m_eq = 0
+        susceptibility = 1 / (2 * reduced_temp)
+    else:
+        # Ordered phase
+        m_eq = math.sqrt(-reduced_temp) if reduced_temp < 0 else 0
+        susceptibility = 1 / (4 * abs(reduced_temp)) if reduced_temp != 0 else float('inf')
+    
+    return f"Order parameter = {m_eq:.4f}, susceptibility = {susceptibility:.3f}"
+
+
+
+def monte_carlo_acceptance_probability(energy_diff, temperature):
+    """Metropolis algorithm acceptance probability"""
+    if temperature <= 0:
+        return "Error: Temperature must be positive"
+    
+    if energy_diff <= 0:
+        prob = 1.0  # Always accept lower energy
+    else:
+        prob = math.exp(-energy_diff / (k_B * temperature))
+    
+    return f"Acceptance probability = {prob:.6f}"
+
+
+
+def renormalization_group_flow(coupling, beta_function):
+    """RG flow of coupling constant"""
+    # Simple beta function example
+    if abs(beta_function) < 1e-10:
+        return "Fixed point: β(g) = 0"
+    
+    if beta_function > 0:
+        flow = "UV attractive (relevant)"
+    else:
+        flow = "UV repulsive (irrelevant)"
+    
+    return f"β(g) = {beta_function:.6f}, {flow}"
+
+
+
+def navier_stokes_reynolds_stress(velocity_fluctuation_x, velocity_fluctuation_y):
+    """Reynolds stress tensor component"""
+    reynolds_stress = -velocity_fluctuation_x * velocity_fluctuation_y  # Time-averaged
+    
+    return f"Reynolds stress τ_xy = {reynolds_stress:.3e} Pa (turbulent)"
+
+
+
+def kolmogorov_energy_cascade(dissipation_rate, viscosity):
+    """Kolmogorov microscales in turbulence"""
+    if dissipation_rate <= 0 or viscosity <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Kolmogorov scales
+    eta = (viscosity**3 / dissipation_rate)**(1/4)  # length
+    tau = (viscosity / dissipation_rate)**(1/2)  # time
+    v_eta = (viscosity * dissipation_rate)**(1/4)  # velocity
+    
+    return f"η = {eta:.3e} m, τ = {tau:.3e} s, v_η = {v_eta:.3e} m/s"
+
+
+
+def shock_wave_rankine_hugoniot(mach_number, gamma=1.4):
+    """Rankine-Hugoniot relations for shock waves"""
+    if mach_number <= 1:
+        return "No shock wave: M ≤ 1"
+    
+    M = mach_number
+    
+    # Density ratio
+    rho_ratio = ((gamma + 1) * M**2) / ((gamma - 1) * M**2 + 2)
+    
+    # Pressure ratio
+    p_ratio = (2 * gamma * M**2 - (gamma - 1)) / (gamma + 1)
+    
+    # Temperature ratio
+    T_ratio = p_ratio / rho_ratio
+    
+    return f"ρ₂/ρ₁ = {rho_ratio:.3f}, p₂/p₁ = {p_ratio:.3f}, T₂/T₁ = {T_ratio:.3f}"
+
+
+
+def boundary_layer_thickness(reynolds_number, distance):
+    """Boundary layer thickness estimation"""
+    if reynolds_number <= 0 or distance <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Laminar boundary layer
+    if reynolds_number < 5e5:
+        delta = 5 * distance / math.sqrt(reynolds_number)
+        regime = "laminar"
+    else:
+        # Turbulent boundary layer
+        delta = 0.16 * distance / (reynolds_number**(1/7))
+        regime = "turbulent"
+    
+    return f"δ = {delta:.3e} m ({regime}), Re = {reynolds_number:.2e}"
+
+
+
+def vortex_shedding_strouhal(diameter, velocity, frequency):
+    """Strouhal number for vortex shedding"""
+    if any(x <= 0 for x in [diameter, velocity, frequency]):
+        return "Error: Parameters must be positive"
+    
+    strouhal = frequency * diameter / velocity
+    
+    # Typical range for circular cylinders: 0.18-0.22
+    if 0.15 < strouhal < 0.25:
+        regime = "typical for cylinder"
+    else:
+        regime = "atypical"
+    
+    return f"Strouhal number St = {strouhal:.3f} ({regime})"
+
+
+
+def maxwell_relations_thermodynamics(variable_pair):
+    """Maxwell relations from thermodynamics potentials"""
+    relations = {
+        "U": r"\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V",
+        "H": r"\left(\frac{\partial T}{\partial P}\right)_S = \left(\frac{\partial V}{\partial S}\right)_P",
+        "F": r"\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V",
+        "G": r"\left(\frac{\partial S}{\partial P}\right)_T = -\left(\frac{\partial V}{\partial T}\right)_P"
+    }
+    if variable_pair in relations:
+        return f"Maxwell relation for {variable_pair}: {relations[variable_pair]}"
+    else:
+        return "Error: Choose from U, H, F, G (internal, enthalpy, Helmholtz, Gibbs)"
+
+
+def carnot_efficiency_quantum(hot_temp, cold_temp):
+    """Carnot efficiency with quantum corrections"""
+    if hot_temp <= cold_temp or cold_temp <= 0:
+        return "Error: Invalid temperatures"
+    
+    # Classical Carnot efficiency
+    eta_classical = 1 - cold_temp / hot_temp
+    
+    # Quantum correction (simplified)
+    if hot_temp < 1:  # Quantum regime (normalized units)
+        correction = math.exp(-1/hot_temp)
+        eta_quantum = eta_classical * (1 - correction)
+    else:
+        eta_quantum = eta_classical
+    
+    return f"η_classical = {eta_classical:.4f}, η_quantum = {eta_quantum:.4f}"
+
+
+
+def phase_transition_latent_heat(transition_temp, volume_change, pressure_change):
+    """Latent heat from Clausius-Clapeyron equation"""
+    if transition_temp <= 0:
+        return "Error: Temperature must be positive"
+    
+    # dp/dT = L/(T⋅ΔV)
+    if volume_change == 0:
+        return "Error: No volume change in transition"
+    
+    latent_heat = transition_temp * volume_change * pressure_change
+    
+    return f"Latent heat L = {latent_heat:.3e} J/mol"
+
+
+
+def black_body_spectral_radiance(wavelength, temperature):
+    """Planck's law for black body radiation"""
+    if wavelength <= 0 or temperature <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Planck's law
+    exponent = h * c / (wavelength * k_B * temperature)
+    
+    if exponent > 700:  # Avoid overflow
+        I_lambda = 0
+    else:
+        numerator = 2 * h * c**2 / wavelength**5
+        denominator = math.exp(exponent) - 1
+        I_lambda = numerator / denominator
+    
+    # Wien's displacement law peak
+    lambda_max = 2.897771955e-3 / temperature
+    
+    return f"I(λ) = {I_lambda:.3e} W/(m³⋅sr), λ_max = {lambda_max:.3e} m"
+
+
+
+def entropy_microcanonical(microstates):
+    """Boltzmann entropy formula"""
+    if microstates <= 0:
+        return "Error: Number of microstates must be positive"
+    
+    S = k_B * math.log(microstates)
+    
+    return f"S = {S:.3e} J/K for Ω = {microstates} microstates"
+
+
+
+def thermodynamic_potential_legendre_transform(internal_energy, temperature, entropy):
+    """Legendre transform to other thermodynamic potentials"""
+    # Helmholtz free energy
+    F = internal_energy - temperature * entropy
+    
+    return f"Helmholtz free energy F = {F:.3e} J"
+
+
+
+def stellar_structure_mass_luminosity_relation(mass_star):
+    """Mass-luminosity relation for main sequence stars"""
+    if mass_star <= 0:
+        return "Error: Mass must be positive"
+    
+    # Approximate relation L ∝ M^3.5
+    L_sun = 3.828e26  # W
+    L_star = L_sun * (mass_star / 1.989e30)**3.5
+    
+    return f"Luminosity ≈ {L_star:.3e} W = {L_star/L_sun:.3f} L☉"
+
+
+
+def chandrasekhar_limit():
+    """Chandrasekhar limit for white dwarfs"""
+    # Electron degeneracy pressure limit
+    M_ch = 1.44 * 1.989e30  # kg (solar masses)
+    
+    return f"Chandrasekhar limit = {M_ch:.3e} kg = 1.44 M☉"
+
+
+
+def neutron_star_radius(mass):
+    """Neutron star radius estimation"""
+    if mass <= 0:
+        return "Error: Mass must be positive"
+    
+    # Approximate relation (TOV equation solution)
+    R = 10e3 * (1.44 * 1.989e30 / mass)**(1/3)  # meters
+    
+    return f"Neutron star radius ≈ {R:.0f} m"
+
+
+
+def dark_matter_halo_profile(radius, scale_radius, density_0):
+    """NFW profile for dark matter halo"""
+    if any(x <= 0 for x in [radius, scale_radius, density_0]):
+        return "Error: Parameters must be positive"
+    
+    x = radius / scale_radius
+    rho = density_0 / (x * (1 + x)**2)
+    
+    return f"ρ(r) = {rho:.3e} kg/m³ at r = {radius:.3e} m"
+
+
+
+def cosmic_inflation_e_folds(hubble_param, phi_dot):
+    """Number of e-folds during cosmic inflation"""
+    if hubble_param <= 0:
+        return "Error: Hubble parameter must be positive"
+    
+    # Number of e-folds N = ∫H dt
+    N_approx = hubble_param**2 / phi_dot**2  # Simplified
+    
+    return f"Number of e-folds N ≈ {N_approx:.1f}"
+
+
+
+def gravitational_lens_equation(source_angle, lens_mass, impact_param):
+    """Gravitational lensing deflection angle"""
+    if lens_mass <= 0:
+        return "Error: Lens mass must be positive"
+    
+    # Einstein radius
+    theta_E = math.sqrt(4 * G * lens_mass / (c**2 * impact_param))
+    
+    # Lens equation
+    beta = source_angle - theta_E**2 / source_angle
+    
+    return f"Einstein radius = {math.degrees(theta_E)*3600:.3f} arcsec, source position β = {math.degrees(beta)*3600:.3f} arcsec"
+
+
+
+def debye_length(electron_density, electron_temperature):
+    """Debye length in plasma"""
+    if electron_density <= 0 or electron_temperature <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Debye length
+    lambda_D = math.sqrt(epsilon_0 * k_B * electron_temperature / (electron_density * e**2))
+    
+    # Number of particles in Debye sphere
+    N_D = (4/3) * math.pi * lambda_D**3 * electron_density
+    
+    return f"λ_D = {lambda_D:.3e} m, N_D = {N_D:.1f} particles"
+
+
+
+def magnetohydrodynamic_alfven_velocity(magnetic_field, plasma_density):
+    """Alfvén velocity in MHD"""
+    if magnetic_field <= 0 or plasma_density <= 0:
+        return "Error: Parameters must be positive"
+    
+    v_A = magnetic_field / math.sqrt(mu_0 * plasma_density)
+    
+    return f"Alfvén velocity = {v_A:.3e} m/s"
+
+
+
+def plasma_oscillation_frequency(electron_density):
+    """Electron plasma frequency"""
+    if electron_density <= 0:
+        return "Error: Density must be positive"
+    
+    omega_pe = math.sqrt(electron_density * e**2 / (epsilon_0 * m_e))
+    f_pe = omega_pe / (2 * math.pi)
+    
+    return f"ω_pe = {omega_pe:.3e} rad/s, f_pe = {f_pe:.3e} Hz"
+
+
+
+def vlasov_equation_dispersion(omega, k, v_th, omega_p):
+    """Vlasov equation dispersion relation for plasma waves"""
+    if any(x <= 0 for x in [omega, k, v_th, omega_p]):
+        return "Error: Parameters must be positive"
+    
+    # Simplified warm plasma dispersion
+    omega_squared = omega_p**2 + 3 * k**2 * v_th**2
+    
+    if omega_squared < 0:
+        return "Unstable mode: ω² < 0"
+    
+    omega_real = math.sqrt(omega_squared)
+    
+    return f"ω = {omega_real:.3e} rad/s for k = {k:.3e} m⁻¹"
+
+
+
+def fresnel_reflection_coefficients(n1, n2, angle_incident):
+    """Fresnel reflection coefficients"""
+    if n1 <= 0 or n2 <= 0 or angle_incident < 0:
+        return "Error: Invalid parameters"
+    
+    theta_i = math.radians(angle_incident)
+    
+    # Snell's law
+    theta_t = math.asin(n1 * math.sin(theta_i) / n2)
+    
+    # Reflection coefficients
+    r_perp = (n1 * math.cos(theta_i) - n2 * math.cos(theta_t)) / (n1 * math.cos(theta_i) + n2 * math.cos(theta_t))
+    r_par = (n2 * math.cos(theta_i) - n1 * math.cos(theta_t)) / (n2 * math.cos(theta_i) + n1 * math.cos(theta_t))
+    
+    R_perp = abs(r_perp)**2
+    R_par = abs(r_par)**2
+    
+    return f"R_perp = {R_perp:.4f}, R_par = {R_par:.4f}, θ_t = {math.degrees(theta_t):.2f}°"
+
+
+
+def fabry_perot_resonance(wavelength, cavity_length, refractive_index):
+    """Fabry-Perot cavity resonance condition"""
+    if any(x <= 0 for x in [wavelength, cavity_length, refractive_index]):
+        return "Error: Parameters must be positive"
+    
+    # Resonance condition: 2nL = mλ
+    m = 2 * refractive_index * cavity_length / wavelength
+    
+    # Free spectral range
+    FSR = wavelength**2 / (2 * refractive_index * cavity_length)
+    
+    return f"Mode order m ≈ {m:.1f}, FSR = {FSR:.3e} m"
+
+
+
+def nonlinear_susceptibility_second_harmonic(E_field, chi_2):
+    """Second harmonic generation efficiency"""
+    if E_field <= 0:
+        return "Error: Field must be positive"
+    
+    # Second harmonic field amplitude
+    E_2omega = chi_2 * E_field**2
+    
+    # Conversion efficiency
+    eta = (E_2omega / E_field)**2
+    
+    return f"SHG efficiency η = {eta:.6f}, E(2ω) = {E_2omega:.3e} V/m"
+
+
+
+def photonic_band_gap_structure(lattice_constant, refractive_index):
+    """Photonic crystal band gap estimation"""
+    if lattice_constant <= 0 or refractive_index <= 1:
+        return "Error: Invalid parameters"
+    
+    # Approximate band gap position
+    lambda_gap = 2 * lattice_constant * refractive_index
+    
+    # Gap width (simplified)
+    gap_width = lambda_gap * (refractive_index - 1) / refractive_index
+    
+    return f"Band gap center ≈ {lambda_gap:.3e} m, width ≈ {gap_width:.3e} m"
+
+
+
+def hall_petch_strengthening(grain_size, k_hp=0.1):
+    """Hall-Petch relation for grain boundary strengthening"""
+    if grain_size <= 0:
+        return "Error: Grain size must be positive"
+    
+    # Yield strength increase
+    delta_sigma = k_hp / math.sqrt(grain_size)
+    
+    return f"Strength increase Δσ = {delta_sigma:.3f} MPa for d = {grain_size*1e6:.1f} μm"
+
+
+
+def dislocation_stress_field(burgers_vector, distance, poisson_ratio=0.33):
+    """Stress field around edge dislocation"""
+    if burgers_vector <= 0 or distance <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Shear stress component
+    tau_xy = (G * burgers_vector) / (2 * math.pi * (1 - poisson_ratio) * distance)
+    
+    return f"τ_xy = {tau_xy:.3e} Pa at r = {distance:.3e} m"
+
+
+
+def diffusion_coefficient_arrhenius(temperature, activation_energy, D0=1e-5):
+    """Arrhenius diffusion coefficient"""
+    if temperature <= 0 or activation_energy <= 0:
+        return "Error: Parameters must be positive"
+    
+    D = D0 * math.exp(-activation_energy / (k_B * temperature))
+    
+    return f"D = {D:.3e} m²/s at T = {temperature:.1f} K"
+
+
+
+def phase_diagram_lever_rule(composition, solidus_composition, liquidus_composition):
+    """Lever rule for phase fractions in binary system"""
+    if not (0 <= composition <= 1 and 0 <= solidus_composition <= 1 and 0 <= liquidus_composition <= 1):
+        return "Error: Compositions must be between 0 and 1"
+    
+    if solidus_composition >= liquidus_composition:
+        return "Error: Solidus composition must be less than liquidus"
+    
+    # Lever rule
+    f_solid = (liquidus_composition - composition) / (liquidus_composition - solidus_composition)
+    f_liquid = 1 - f_solid
+    
+    return f"Solid fraction = {f_solid:.3f}, Liquid fraction = {f_liquid:.3f}"
+
+
+
+def hodgkin_huxley_membrane_potential(g_Na, g_K, g_L, E_Na, E_K, E_L):
+    """Hodgkin-Huxley membrane potential dynamics"""
+    if any(x <= 0 for x in [g_Na, g_K, g_L]):
+        return "Error: Conductances must be positive"
+    
+    # Resting membrane potential
+    V_m = (g_Na * E_Na + g_K * E_K + g_L * E_L) / (g_Na + g_K + g_L)
+    
+    return f"Resting membrane potential = {V_m:.3f} mV"
+
+
+
+def michaelis_menten_enzyme_kinetics(substrate_concentration, V_max, K_m):
+    """Michaelis-Menten enzyme kinetics"""
+    if any(x <= 0 for x in [substrate_concentration, V_max, K_m]):
+        return "Error: Parameters must be positive"
+    
+    # Reaction rate
+    v = V_max * substrate_concentration / (K_m + substrate_concentration)
+    
+    return f"Reaction rate v = {v:.3f} mol/s at [S] = {substrate_concentration:.3f} M"
+
+
+
+def allosteric_cooperativity_hill(ligand_concentration, K_d, hill_coefficient):
+    """Hill equation for cooperative binding"""
+    if any(x <= 0 for x in [ligand_concentration, K_d, hill_coefficient]):
+        return "Error: Parameters must be positive"
+    
+    # Fractional saturation
+    theta = ligand_concentration**hill_coefficient / (K_d**hill_coefficient + ligand_concentration**hill_coefficient)
+    
+    return f"Fractional saturation θ = {theta:.4f}, n_H = {hill_coefficient}"
+
+
+
+def action_potential_propagation_speed(axon_diameter, membrane_capacitance, axial_resistivity):
+    """Nerve impulse propagation speed"""
+    if any(x <= 0 for x in [axon_diameter, membrane_capacitance, axial_resistivity]):
+        return "Error: Parameters must be positive"
+    
+    # Simplified propagation speed
+    v_prop = math.sqrt(axon_diameter / (4 * membrane_capacitance * axial_resistivity))
+    
+    return f"Propagation speed ≈ {v_prop:.3f} m/s for d = {axon_diameter*1e6:.1f} μm"
+
+
+
+def finite_difference_laplacian(grid_spacing):
+    """Finite difference approximation of Laplacian"""
+    if grid_spacing <= 0:
+        return "Error: Grid spacing must be positive"
+    
+    # Second derivative error
+    error = grid_spacing**2 / 12  # Leading truncation error
+    
+    return f"Laplacian truncation error ≈ O(h²) = {error:.3e} for h = {grid_spacing:.3e}"
+
+
+
+def monte_carlo_integration_error(N_samples, dimension):
+    """Monte Carlo integration statistical error"""
+    if N_samples <= 0 or dimension <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Standard error
+    error = 1 / math.sqrt(N_samples)
+    
+    return f"MC integration error ≈ {error:.6f} for {N_samples} samples in {dimension}D"
+
+
+
+def fast_fourier_transform_complexity(N_points):
+    """FFT computational complexity"""
+    if N_points <= 0:
+        return "Error: Number of points must be positive"
+    
+    # Operations count
+    operations = N_points * math.log2(N_points)
+    
+    return f"FFT operations ≈ {operations:.1f} for N = {N_points} (O(N log N))"
+
+
+
+def molecular_dynamics_time_step(atomic_mass, potential_curvature):
+    """Optimal time step for molecular dynamics"""
+    if atomic_mass <= 0 or potential_curvature <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Vibrational period
+    omega = math.sqrt(potential_curvature / atomic_mass)
+    period = 2 * math.pi / omega
+    
+    # Recommended time step
+    dt = period / 20  # ~5% of vibrational period
+    
+    return f"Recommended time step Δt ≈ {dt:.3e} s, vibrational period = {period:.3e} s"
+
+
+
+def seismic_wave_velocity(density, bulk_modulus, shear_modulus):
+    """P-wave and S-wave velocities in elastic medium"""
+    if any(x <= 0 for x in [density, bulk_modulus, shear_modulus]):
+        return "Error: Parameters must be positive"
+    
+    # P-wave velocity
+    v_p = math.sqrt((bulk_modulus + 4/3 * shear_modulus) / density)
+    
+    # S-wave velocity
+    v_s = math.sqrt(shear_modulus / density)
+    
+    return f"V_p = {v_p:.3f} km/s, V_s = {v_s:.3f} km/s"
+
+
+
+def earth_mantle_convection_rayleigh_number(density, thermal_expansion, temp_diff, viscosity, depth):
+    """Rayleigh number for mantle convection"""
+    if any(x <= 0 for x in [density, thermal_expansion, temp_diff, viscosity, depth]):
+        return "Error: Parameters must be positive"
+    
+    # Rayleigh number
+    Ra = (density * 9.8 * thermal_expansion * temp_diff * depth**3) / (viscosity * 1e-6)  # kinematic viscosity
+    
+    if Ra > 1000:
+        regime = "convective"
+    else:
+        regime = "stable"
+    
+    return f"Rayleigh number Ra = {Ra:.3e} ({regime})"
+
+
+
+def magnetic_field_dipole_moment(magnetic_moment, distance, latitude):
+    """Geomagnetic field from dipole model"""
+    if magnetic_moment <= 0 or distance <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Dipole field components
+    B_r = -2 * (mu_0 * magnetic_moment / (4 * math.pi * distance**3)) * math.sin(math.radians(latitude))
+    B_theta = - (mu_0 * magnetic_moment / (4 * math.pi * distance**3)) * math.cos(math.radians(latitude))
+    
+    B_total = math.sqrt(B_r**2 + B_theta**2)
+    
+    return f"B_total = {B_total*1e9:.1f} nT at r = {distance/6371e3:.2f} R_earth, lat = {latitude}°"
+
+
+
+def morse_potential_energy(distance, D_e, alpha, r_e):
+    """Morse potential for diatomic molecules"""
+    if any(x <= 0 for x in [distance, D_e, alpha, r_e]):
+        return "Error: Parameters must be positive"
+    
+    # Morse potential
+    V = D_e * (1 - math.exp(-alpha * (distance - r_e)))**2
+    
+    # Vibrational frequency
+    omega_e = alpha * math.sqrt(2 * D_e / (m_p))  # Reduced mass approximation
+    
+    return f"V = {V:.3f} eV, ω_e ≈ {omega_e:.3e} rad/s"
+
+
+
+def born_oppenheimer_approximation(electron_mass, nuclear_mass):
+    """Validity of Born-Oppenheimer approximation"""
+    if electron_mass <= 0 or nuclear_mass <= 0:
+        return "Error: Masses must be positive"
+    
+    # Mass ratio
+    ratio = math.sqrt(electron_mass / nuclear_mass)
+    
+    if ratio < 0.01:
+        validity = "excellent"
+    elif ratio < 0.1:
+        validity = "good"
+    else:
+        validity = "poor"
+    
+    return f"BO approximation validity: {validity} (mass ratio = {ratio:.4f})"
+
+
+
+def franck_condon_factor(vibrational_overlap):
+    """Franck-Condon factor for electronic transitions"""
+    if not 0 <= vibrational_overlap <= 1:
+        return "Error: Overlap must be between 0 and 1"
+    
+    # Franck-Condon factor
+    FC = vibrational_overlap**2
+    
+    return f"Franck-Condon factor = {FC:.4f}"
+
+
+
+def raman_scattering_cross_section(frequency_shift, temperature, laser_frequency):
+    """Raman scattering cross section"""
+    if any(x <= 0 for x in [frequency_shift, temperature, laser_frequency]):
+        return "Error: Parameters must be positive"
+    
+    # Simplified Raman cross section
+    sigma_Raman = (laser_frequency - frequency_shift)**4 * math.exp(-h * frequency_shift / (k_B * temperature))
+    
+    return f"Raman cross section ≈ {sigma_Raman:.3e} m²/sr"
+
+
+
+def green_function_poisson_equation(dimension, distance):
+    """Green's function for Poisson equation"""
+    if distance <= 0:
+        return "Error: Distance must be positive"
+    
+    if dimension == 1:
+        G = -abs(distance) / 2
+    elif dimension == 2:
+        G = math.log(distance) / (2 * math.pi)
+    elif dimension == 3:
+        G = -1 / (4 * math.pi * distance)
+    else:
+        return "Error: Dimension must be 1, 2, or 3"
+    
+    return f"G({dimension}D) = {G:.6f} for r = {distance:.3e} m"
+
+
+
+def bessel_function_zeros(order, n):
+    """Zeros of Bessel functions"""
+    if order < 0 or n < 1:
+        return "Error: Invalid parameters"
+    
+    # Approximate zeros using asymptotic formula
+    if order == 0:
+        # J_0 zeros: j_{0,n} ≈ π(n - 1/4)
+        zero = math.pi * (n - 0.25)
+    else:
+        # General asymptotic: j_{ν,n} ≈ π(n + ν/2 - 1/4)
+        zero = math.pi * (n + order/2 - 0.25)
+    
+    return f"j_{{{order},{n}}} ≈ {zero:.6f}"
+
+
+
+def legendre_polynomial_rodrigues(order, x):
+    """Rodrigues' formula for Legendre polynomials"""
+    if order < 0 or not -1 <= x <= 1:
+        return "Error: Invalid parameters"
+    
+    # Rodrigues formula
+    if order == 0:
+        P = 1
+    elif order == 1:
+        P = x
+    elif order == 2:
+        P = (3*x**2 - 1)/2
+    else:
+        # General formula would require derivative calculation
+        return f"P_{order}(x) requires symbolic differentiation"
+    
+    return f"P_{order}({x}) = {P:.6f}"
+
+
+
+def hermite_polynomial_quantum_oscillator(n, x):
+    """Hermite polynomials for quantum oscillator"""
+    if n < 0:
+        return "Error: n must be non-negative"
+    
+    # First few Hermite polynomials
+    if n == 0:
+        H = 1
+    elif n == 1:
+        H = 2*x
+    elif n == 2:
+        H = 4*x**2 - 2
+    elif n == 3:
+        H = 8*x**3 - 12*x
+    else:
+        return f"H_{n}(x) requires recursive calculation"
+    
+    return f"H_{n}({x}) = {H:.6f}"
+
+
+
+def particle_detector_resolution(energy, detector_resolution):
+    """Energy resolution of particle detector"""
+    if energy <= 0 or detector_resolution <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Energy resolution ΔE/E
+    resolution = detector_resolution / math.sqrt(energy)
+    
+    return f"Energy resolution ΔE/E ≈ {resolution:.4f} at E = {energy:.1f} MeV"
+
+
+
+def mass_spectrometer_resolution(mass, charge, magnetic_field, radius):
+    """Mass resolution in magnetic spectrometer"""
+    if any(x <= 0 for x in [mass, charge, magnetic_field, radius]):
+        return "Error: Parameters must be positive"
+    
+    # Momentum
+    p = charge * magnetic_field * radius
+    
+    # Mass resolution (simplified)
+    delta_m_over_m = 0.01  # Typical 1% resolution
+    
+    return f"Momentum = {p:.3e} kg⋅m/s, mass resolution ≈ {delta_m_over_m*100:.1f}%"
+
+
+
+def interferometer_sensitivity(wavelength, arm_length):
+    """Laser interferometer sensitivity (e.g., LIGO)"""
+    if wavelength <= 0 or arm_length <= 0:
+        return "Error: Parameters must be positive"
+    
+    # Strain sensitivity
+    h_min = wavelength / (2 * math.pi * arm_length)
+    
+    return f"Minimum detectable strain h_min ≈ {h_min:.3e} for L = {arm_length:.1f} m, λ = {wavelength:.3e} m"
+
+
+
+def cryogenic_temperature_dilution_refrigerator(heating_power):
+    """Minimum temperature in dilution refrigerator"""
+    if heating_power < 0:
+        return "Error: Heating power cannot be negative"
+    
+    # Typical base temperature
+    if heating_power == 0:
+        T_min = 0.010  # 10 mK
+    else:
+        T_min = 0.010 * (1 + heating_power / 1e-9)  # Simplified scaling
+    
+    return f"Base temperature ≈ {T_min*1000:.3f} mK for Q = {heating_power:.3e} W"
+
+
+
+def credit_default_swap_pricing(notional, spread, recovery_rate, default_probability, discount_factor=1.0):
+    """Approximate CDS valuation: expected protection leg vs premium leg (very simplified)."""
+    try:
+        notional = float(notional)
+        spread = float(spread)
+        recovery_rate = float(recovery_rate)
+        default_probability = float(default_probability)
+        discount_factor = float(discount_factor)
+    except Exception:
+        return "Error: invalid numerical inputs"
+    if notional <= 0 or spread < 0:
+        return "Error: Invalid notional or spread"
+    if not (0 <= recovery_rate <= 1) or not (0 <= default_probability <= 1):
+        return "Error: recovery_rate and default_probability must be between 0 and 1"
+    # Expected protection (loss) = notional * default_prob * (1 - recovery) discounted
+    expected_protection = notional * default_probability * (1 - recovery_rate) * discount_factor
+    # Premium leg approximate: notional * spread * (1 - default_prob) * discount_factor
+    premium_leg = notional * spread * (1 - default_probability) * discount_factor
+    # Fair spread approximation
+    denom = notional * (1 - default_probability) * discount_factor
+    fair_spread = (expected_protection / denom) if denom != 0 else float('inf')
+    return f"Expected protection = {expected_protection:.3e}, Premium leg ≈ {premium_leg:.3e}, Approx fair spread ≈ {fair_spread:.3e}"
+
+
+
+
+
+
+def resolve_equation_solvers(namespace=None):
+    """
+    Replace 'solver' values in EQUATIONS that are strings with the actual callable
+    from the provided namespace (defaults to globals()). If a solver name is not found,
+    it remains as a string and a warning is recorded.
+    """
+    if namespace is None:
+        namespace = globals()
+    missing = []
+    for key, val in EQUATIONS.items():
+        sol = val.get('solver', None)
+        if isinstance(sol, str):
+            fn = namespace.get(sol, None)
+            if callable(fn):
+                val['solver'] = fn
+            else:
+                missing.append(sol)
+    return missing
+
+
+
+# ============ REBUILT EQUATIONS (minimal entries) ============
+
+
+# --- BEGIN: Added implementations for previously-missing solver functions ---
+import math
+from math import log, sqrt, exp
+# Physical constants for convenience
+R_gas = 8.31446261815324  # J/(mol K)
+F_const = 96485.33212     # C/mol
+k_B = 1.380649e-23        # Boltzmann constant (J/K)
+c_light = 299792458.0     # m/s
+
+def critical_point_scaling(t, xi0=1.0, nu=0.63):
+    """
+    Correlation length scaling near a critical point:
+      xi(t) = xi0 * |t|^{-nu}
+    where t = (T - Tc)/Tc is reduced temperature, nu is critical exponent (default 3D Ising ~0.63).
+    """
+    t = float(t)
+    if t == 0:
+        return float('inf')
+    return xi0 * abs(t) ** (-nu)
+
+def nonlinear_optics_kerr_effect(n0, n2, intensity):
+    """
+    Kerr effect: refractive index change Δn = n2 * I
+    Returns (n_total, delta_n)
+    n0: linear refractive index
+    n2: nonlinear index coefficient (m^2/W)
+    intensity: optical intensity (W/m^2)
+    """
+    delta_n = float(n2) * float(intensity)
+    return float(n0) + delta_n, delta_n
+
+def photonic_crystal_band_gap(a, n_high, n_low):
+    """
+    Rough estimate of the central frequency (first bandgap) in a 1D Bragg stack:
+      lambda_center ≈ 2 * a * n_avg
+    central frequency f = c / lambda_center
+    where a is the lattice period (m) and n_high/n_low are refractive indices of layers.
+    This is an estimate for the stop-band center.
+    Returns a dict with central wavelength and frequency.
+    """
+    n_avg = 0.5 * (float(n_high) + float(n_low))
+    lambda_c = 2.0 * float(a) * n_avg
+    f_c = c_light / lambda_c
+    return {"lambda_center_m": lambda_c, "frequency_center_hz": f_c, "n_avg": n_avg}
+
+def laser_threshold_condition(L, R1, R2, alpha_internal=0.0):
+    """
+    Laser threshold gain approximation:
+      g_th = (1/(2L)) * ln(1 / (R1 * R2)) + alpha_internal
+    L: cavity length (m)
+    R1,R2: mirror power reflectivities (0..1)
+    alpha_internal: internal loss (1/m)
+    Returns threshold gain (1/m).
+    """
+    L = float(L)
+    if L <= 0:
+        raise ValueError("L must be positive")
+    R1 = float(R1); R2 = float(R2)
+    if not (0 < R1 <= 1 and 0 < R2 <= 1):
+        raise ValueError("Mirror reflectivities must be in (0,1]")
+    gth = (1.0 / (2.0 * L)) * math.log(1.0 / (R1 * R2)) + float(alpha_internal)
+    return gth
+
+def metamaterial_negative_index(eps_eff, mu_eff):
+    """
+    Effective refractive index n_eff = sqrt(eps_eff * mu_eff)
+    Returns (n_eff, is_negative_index) where is_negative_index is True if both real parts negative.
+    eps_eff, mu_eff: complex or real effective permittivity/permeability
+    """
+    # allow complex values
+    try:
+        n_eff = cmath.sqrt(complex(eps_eff) * complex(mu_eff))
+    except Exception:
+        # fallback to real sqrt if complex not available
+        n_eff = math.sqrt(float(eps_eff) * float(mu_eff))
+    # check sign (for real-valued results)
+    is_negative = False
+    try:
+        re_n = (n_eff.real if hasattr(n_eff, "real") else float(n_eff))
+        is_negative = re_n < 0
+    except Exception:
+        is_negative = False
+    return {"n_eff": n_eff, "negative_index": is_negative}
+
+def dna_melting_temperature(seq_or_length, na_conc=0.05):
+    """
+    Approximate DNA melting temperature (Tm).
+    If seq_or_length is a string (DNA sequence), use either Wallace rule (short sequences)
+    or a simple empirical long-sequence formula:
+      - For length < 14: Wallace rule Tm = 2*(A+T) + 4*(G+C) (°C)
+      - For longer sequences: Tm = 81.5 + 0.41*(%GC) - 675/length + 16.6*log10([Na+])
+    na_conc: sodium concentration in M (default 0.05 M)
+    Returns Tm in degrees Celsius.
+    """
+    if isinstance(seq_or_length, str):
+        seq = seq_or_length.upper()
+        length = len(seq)
+        gc = seq.count("G") + seq.count("C")
+        at = seq.count("A") + seq.count("T")
+        if length < 1:
+            raise ValueError("Sequence length must be > 0")
+        if length < 14:
+            tm = 2 * at + 4 * gc
+            return float(tm)
+        else:
+            pct_gc = 100.0 * gc / length
+            tm = 81.5 + 0.41 * pct_gc - 675.0 / length + 16.6 * math.log10(max(na_conc, 1e-9))
+            return float(tm)
+    else:
+        # assume numeric length with an average GC percent ~50%
+        length = float(seq_or_length)
+        pct_gc = 50.0
+        tm = 81.5 + 0.41 * pct_gc - 675.0 / length + 16.6 * math.log10(max(na_conc, 1e-9))
+        return float(tm)
+
+def protein_folding_energy_landscape(delta_H, delta_S, T=298.15):
+    """
+    Gibbs free energy change for folding: ΔG = ΔH - T ΔS
+    delta_H: enthalpy change (J/mol)
+    delta_S: entropy change (J/(mol K))
+    T: temperature in K (default 298.15 K)
+    Returns ΔG in J/mol.
+    """
+    return float(delta_H) - float(T) * float(delta_S)
+
+def cell_membrane_potential(C_out, C_in, z=1, T=298.15):
+    """
+    Nernst equation for equilibrium potential (in volts):
+      E = (R T) / (z F) * ln([out]/[in])
+    C_out/C_in: ion concentrations (same units)
+    z: ion valence (default +1)
+    T: temperature in Kelvin
+    """
+    if C_in <= 0 or C_out <= 0:
+        raise ValueError("Concentrations must be positive")
+    return (R_gas * T) / (z * F_const) * math.log(float(C_out) / float(C_in))
+
+def enzyme_kinetics_competitive_inhibition(Vmax, Km, S, I=0.0, Ki=1.0):
+    """
+    Michaelis-Menten rate with competitive inhibitor:
+      v = Vmax * [S] / (Km * (1 + [I]/Ki) + [S])
+    Vmax: maximum rate
+    Km: Michaelis constant
+    S: substrate concentration
+    I: inhibitor concentration
+    Ki: inhibitor dissociation constant
+    """
+    denom = float(Km) * (1.0 + float(I) / float(Ki)) + float(S)
+    if denom == 0:
+        return 0.0
+    return float(Vmax) * float(S) / denom
+
+# Black-Scholes pricing and Greeks for European options
+import math
+from math import log, sqrt, exp
+try:
+    import mpmath as _mp
+except Exception:
+    _mp = None
+
+def _norm_pdf(x):
+    return math.exp(-0.5 * x * x) / math.sqrt(2.0 * math.pi)
+
+def _norm_cdf(x):
+    # use math.erf to compute normal CDF
+    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
+
+def black_scholes_greeks_comprehensive(S, K, T, r, sigma, option_type='call'):
+    """
+    Compute Black-Scholes price and Greeks for a European call or put.
+    Inputs:
+      S: spot price
+      K: strike
+      T: time to maturity in years (if T==0 returns intrinsic values)
+      r: risk-free rate (annual)
+      sigma: volatility (annual)
+      option_type: 'call' or 'put'
+    Returns dict with price, delta, gamma, vega, theta, rho.
+    """
+    S = float(S); K = float(K); T = float(T); r = float(r); sigma = float(sigma)
+    if T <= 0 or sigma == 0:
+        # intrinsic value fallback
+        if option_type.lower().startswith('c'):
+            price = max(S - K, 0.0)
+            delta = 1.0 if S > K else 0.0
+        else:
+            price = max(K - S, 0.0)
+            delta = -1.0 if S < K else 0.0
+        gamma = 0.0; vega = 0.0; theta = 0.0; rho = 0.0
+        return {"price": price, "delta": delta, "gamma": gamma, "vega": vega, "theta": theta, "rho": rho}
+
+    d1 = (math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * math.sqrt(T))
+    d2 = d1 - sigma * math.sqrt(T)
+    Nd1 = _norm_cdf(d1)
+    Nd2 = _norm_cdf(d2)
+    n_d1 = _norm_pdf(d1)
+
+    if option_type.lower().startswith('c'):
+        price = S * Nd1 - K * math.exp(-r * T) * Nd2
+        delta = Nd1
+        theta = (-S * n_d1 * sigma / (2.0 * math.sqrt(T)) - r * K * math.exp(-r * T) * Nd2)
+        rho = K * T * math.exp(-r * T) * Nd2
+    else:
+        Nd1m = _norm_cdf(-d1)
+        Nd2m = _norm_cdf(-d2)
+        price = K * math.exp(-r * T) * Nd2m - S * Nd1m
+        delta = -Nd1m
+        theta = (-S * n_d1 * sigma / (2.0 * math.sqrt(T)) + r * K * math.exp(-r * T) * Nd2m)
+        rho = -K * T * math.exp(-r * T) * Nd2m
+
+    gamma = n_d1 / (S * sigma * math.sqrt(T))
+    vega = S * n_d1 * math.sqrt(T)
+
+    return {"price": price, "delta": delta, "gamma": gamma, "vega": vega, "theta": theta, "rho": rho}
+
+def value_at_risk_monte_carlo(portfolio_value, mu=0.0, sigma=0.01, horizon_days=1, sims=10000, conf_level=0.95, seed=None):
+    """
+    Monte Carlo VaR assuming geometric Brownian motion model for portfolio returns or simple normal returns.
+    portfolio_value: current portfolio value (currency)
+    mu: expected daily return (decimal)
+    sigma: daily volatility (decimal)
+    horizon_days: days to hold
+    sims: number of Monte Carlo simulations
+    conf_level: e.g., 0.95 for 95% VaR
+    Returns VaR (positive number indicating loss) and the returns distribution percentile.
+    """
+    import random
+    if seed is not None:
+        random.seed(seed)
+    dt = float(horizon_days)
+    sims = int(sims)
+    losses = []
+    for _ in range(sims):
+        # simulate simple normal return over horizon: r ~ N(mu*dt, sigma*sqrt(dt))
+        r = random.gauss(mu * dt, sigma * math.sqrt(dt))
+        # end value using multiplicative model
+        end = float(portfolio_value) * math.exp(r)
+        loss = max(0.0, portfolio_value - end)
+        losses.append(loss)
+    losses.sort(reverse=True)
+    idx = int((1.0 - conf_level) * sims)
+    idx = min(max(idx, 0), sims - 1)
+    var = losses[idx]
+    return {"VaR": var, "confidence_level": conf_level, "losses_sampled": losses[:10]}
+
+# --- END: Added implementations ---
+
+
+
+EQUATIONS = {
+"schrodinger_infinite_well": {
+    "name": "Schrodinger Infinite Well",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": schrodinger_infinite_well
+},
+
+"quantum_harmonic_oscillator": {
+    "name": "Quantum Harmonic Oscillator",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": quantum_harmonic_oscillator
+},
+
+"hydrogen_atom_energy": {
+    "name": "Hydrogen Atom Energy",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": hydrogen_atom_energy
+},
+
+"de_broglie_wavelength": {
+    "name": "De Broglie Wavelength",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": de_broglie_wavelength
+},
+
+"heisenberg_uncertainty": {
+    "name": "Heisenberg Uncertainty",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": heisenberg_uncertainty
+},
+
+"quantum_tunneling": {
+    "name": "Quantum Tunneling",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": quantum_tunneling
+},
+
+"spin_orbital_coupling": {
+    "name": "Spin Orbital Coupling",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": spin_orbital_coupling
+},
+
+"quantum_zeno_effect": {
+    "name": "Quantum Zeno Effect",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": quantum_zeno_effect
+},
+
+"berry_phase_calculation": {
+    "name": "Berry Phase Calculation",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": berry_phase_calculation
+},
+
+"aharonov_bohm_effect": {
+    "name": "Aharonov Bohm Effect",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": aharonov_bohm_effect
+},
+
+"klein_gordon_dispersion": {
+    "name": "Klein Gordon Dispersion",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": klein_gordon_dispersion
+},
+
+"dirac_spinor_energy": {
+    "name": "Dirac Spinor Energy",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": dirac_spinor_energy
+},
+
+"casimir_force_parallel_plates": {
+    "name": "Casimir Force Parallel Plates",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": casimir_force_parallel_plates
+},
+
+"lamb_shift_hydrogen_2s": {
+    "name": "Lamb Shift Hydrogen 2S",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": lamb_shift_hydrogen_2s
+},
+
+"qed_vertex_correction": {
+    "name": "Qed Vertex Correction",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": qed_vertex_correction
+},
+
+"vacuum_polarization_correction": {
+    "name": "Vacuum Polarization Correction",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": vacuum_polarization_correction
+},
+
+"schwinger_pair_production_threshold": {
+    "name": "Schwinger Pair Production Threshold",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": schwinger_pair_production_threshold
+},
+
+"feynman_diagram_propagator": {
+    "name": "Feynman Diagram Propagator",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": feynman_diagram_propagator
+},
+
+"schwarzschild_metric_components": {
+    "name": "Schwarzschild Metric Components",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": schwarzschild_metric_components
+},
+
+"gravitational_wave_strain": {
+    "name": "Gravitational Wave Strain",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": gravitational_wave_strain
+},
+
+"cosmological_redshift": {
+    "name": "Cosmological Redshift",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": cosmological_redshift
+},
+
+"hubble_parameter_evolution": {
+    "name": "Hubble Parameter Evolution",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": hubble_parameter_evolution
+},
+
+"black_hole_temperature": {
+    "name": "Black Hole Temperature",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": black_hole_temperature
+},
+
+"wormhole_throat_radius": {
+    "name": "Wormhole Throat Radius",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": wormhole_throat_radius
+},
+
+"penrose_process_energy_extraction": {
+    "name": "Penrose Process Energy Extraction",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": penrose_process_energy_extraction
+},
+
+"maxwell_stress_tensor": {
+    "name": "Maxwell Stress Tensor",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": maxwell_stress_tensor
+},
+
+"electromagnetic_wave_impedance": {
+    "name": "Electromagnetic Wave Impedance",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": electromagnetic_wave_impedance
+},
+
+"cyclotron_resonance": {
+    "name": "Cyclotron Resonance",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": cyclotron_resonance
+},
+
+"synchrotron_radiation_power": {
+    "name": "Synchrotron Radiation Power",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": synchrotron_radiation_power
+},
+
+"plasma_dispersion_relation": {
+    "name": "Plasma Dispersion Relation",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": plasma_dispersion_relation
+},
+
+"magnetic_reconnection_rate": {
+    "name": "Magnetic Reconnection Rate",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": magnetic_reconnection_rate
+},
+
+"cherenkov_radiation_threshold": {
+    "name": "Cherenkov Radiation Threshold",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": cherenkov_radiation_threshold
+},
+
+"bloch_electron_effective_mass": {
+    "name": "Bloch Electron Effective Mass",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": bloch_electron_effective_mass
+},
+
+"cooper_pair_coherence_length": {
+    "name": "Cooper Pair Coherence Length",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": cooper_pair_coherence_length
+},
+
+"josephson_junction_critical_current": {
+    "name": "Josephson Junction Critical Current",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": josephson_junction_critical_current
+},
+
+"quantum_hall_conductivity": {
+    "name": "Quantum Hall Conductivity",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": quantum_hall_conductivity
+},
+
+"anderson_localization_length": {
+    "name": "Anderson Localization Length",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": anderson_localization_length
+},
+
+"fermi_liquid_specific_heat": {
+    "name": "Fermi Liquid Specific Heat",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": fermi_liquid_specific_heat
+},
+
+"kondo_temperature": {
+    "name": "Kondo Temperature",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": kondo_temperature
+},
+
+"mott_insulator_gap": {
+    "name": "Mott Insulator Gap",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": mott_insulator_gap
+},
+
+"nuclear_binding_energy_semf": {
+    "name": "Nuclear Binding Energy Semf",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": nuclear_binding_energy_semf
+},
+
+"radioactive_decay_chain": {
+    "name": "Radioactive Decay Chain",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": radioactive_decay_chain
+},
+
+"cross_section_breit_wigner": {
+    "name": "Cross Section Breit Wigner",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": cross_section_breit_wigner
+},
+
+"nuclear_fission_fragments": {
+    "name": "Nuclear Fission Fragments",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": nuclear_fission_fragments
+},
+
+"neutron_flux_diffusion": {
+    "name": "Neutron Flux Diffusion",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": neutron_flux_diffusion
+},
+
+"quark_confinement_potential": {
+    "name": "Quark Confinement Potential",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": quark_confinement_potential
+},
+
+"standard_model_running_coupling": {
+    "name": "Standard Model Running Coupling",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": standard_model_running_coupling
+},
+
+"partition_function_ising_1d": {
+    "name": "Partition Function Ising 1D",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": partition_function_ising_1d
+},
+
+"critical_exponents_ising_2d": {
+    "name": "Critical Exponents Ising 2D",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": critical_exponents_ising_2d
+},
+
+"landau_theory_phase_transition": {
+    "name": "Landau Theory Phase Transition",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": landau_theory_phase_transition
+},
+
+"monte_carlo_acceptance_probability": {
+    "name": "Monte Carlo Acceptance Probability",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": monte_carlo_acceptance_probability
+},
+
+"renormalization_group_flow": {
+    "name": "Renormalization Group Flow",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": renormalization_group_flow
+},
+
+"navier_stokes_reynolds_stress": {
+    "name": "Navier Stokes Reynolds Stress",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": navier_stokes_reynolds_stress
+},
+
+"kolmogorov_energy_cascade": {
+    "name": "Kolmogorov Energy Cascade",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": kolmogorov_energy_cascade
+},
+
+"shock_wave_rankine_hugoniot": {
+    "name": "Shock Wave Rankine Hugoniot",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": shock_wave_rankine_hugoniot
+},
+
+"boundary_layer_thickness": {
+    "name": "Boundary Layer Thickness",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": boundary_layer_thickness
+},
+
+"vortex_shedding_strouhal": {
+    "name": "Vortex Shedding Strouhal",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": vortex_shedding_strouhal
+},
+
+"carnot_efficiency_quantum": {
+    "name": "Carnot Efficiency Quantum",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": carnot_efficiency_quantum
+},
+
+"phase_transition_latent_heat": {
+    "name": "Phase Transition Latent Heat",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": phase_transition_latent_heat
+},
+
+"maxwell_relations_thermodynamics": {
+    "name": "Maxwell Relations Thermodynamics",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": maxwell_relations_thermodynamics
+},
+
+"critical_point_scaling": {
+    "name": "Critical Point Scaling",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": critical_point_scaling
+},
+
+"nonlinear_optics_kerr_effect": {
+    "name": "Nonlinear Optics Kerr Effect",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": nonlinear_optics_kerr_effect
+},
+
+"photonic_crystal_band_gap": {
+    "name": "Photonic Crystal Band Gap",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": photonic_crystal_band_gap
+},
+
+"laser_threshold_condition": {
+    "name": "Laser Threshold Condition",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": laser_threshold_condition
+},
+
+"metamaterial_negative_index": {
+    "name": "Metamaterial Negative Index",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": metamaterial_negative_index
+},
+
+"dna_melting_temperature": {
+    "name": "Dna Melting Temperature",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": dna_melting_temperature
+},
+
+"protein_folding_energy_landscape": {
+    "name": "Protein Folding Energy Landscape",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": protein_folding_energy_landscape
+},
+
+"cell_membrane_potential": {
+    "name": "Cell Membrane Potential",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": cell_membrane_potential
+},
+
+"enzyme_kinetics_competitive_inhibition": {
+    "name": "Enzyme Kinetics Competitive Inhibition",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": enzyme_kinetics_competitive_inhibition
+},
+
+"black_scholes_greeks_comprehensive": {
+    "name": "Black Scholes Greeks Comprehensive",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": black_scholes_greeks_comprehensive
+},
+
+"value_at_risk_monte_carlo": {
+    "name": "Value At Risk Monte Carlo",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": value_at_risk_monte_carlo
+},
+
+"credit_default_swap_pricing": {
+    "name": "Credit Default Swap Pricing",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": credit_default_swap_pricing
+},
+
+"green_function_poisson_equation": {
+    "name": "Green Function Poisson Equation",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": green_function_poisson_equation
+},
+
+"bessel_function_zeros": {
+    "name": "Bessel Function Zeros",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": bessel_function_zeros
+},
+
+"legendre_polynomial_rodrigues": {
+    "name": "Legendre Polynomial Rodrigues",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": legendre_polynomial_rodrigues
+},
+
+"hermite_polynomial_quantum_oscillator": {
+    "name": "Hermite Polynomial Quantum Oscillator",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": hermite_polynomial_quantum_oscillator
+},
+
+"franck_condon_factor": {
+    "name": "Franck Condon Factor",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": franck_condon_factor
+},
+
+"raman_scattering_cross_section": {
+    "name": "Raman Scattering Cross Section",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": raman_scattering_cross_section
+},
+
+"particle_detector_resolution": {
+    "name": "Particle Detector Resolution",
+    "category": "Misc",
+    "description": "",
+    "formula_latex": "",
+    "variables": [],
+    "solver": particle_detector_resolution
+}
+}
